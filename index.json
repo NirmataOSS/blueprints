@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Shopme",
+    "description": "Simple microservices application",
+    "filename": "shopme.json"
+  },
+  {
+    "name": "Wordpress",
+    "description": "Wordpress publishing application",
+    "filename": "wordpress.json"
+  }
+]
