@@ -5,43 +5,34 @@
 		{
 			"name": "orders",
 			"imageRepository": "nirmata/orders",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"properties": [],
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					},
-					{
-						"containerPort": 9999,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP_TWO"
-					},
-					{
-						"containerPort": 7777,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP_THREE"
-					}
-				]
-			},
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "TCP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
 			"gatewayRoutes": [
 				{
 					"type": "urlRoute",
 					"route": "/orders"
 				}
 			],
+			"containerType": [],
 			"dependsOn": [],
 			"requiredBy": [
 				{
@@ -50,300 +41,62 @@
 			],
 			"serviceInstances": [],
 			"desiredServices": [],
-			"serviceAffinityRules": []
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
 		},
 		{
 			"name": "customer",
 			"imageRepository": "nirmata/customer",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [
-					"ORDERS_IP={orders. NIRMATA_HOST_ADDRESS}"
-				],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
 			"gatewayRoutes": [
 				{
 					"type": "urlRoute",
 					"route": "/customer"
 				}
 			],
+			"containerType": [],
 			"dependsOn": [
+				{
+					"name": "catalog"
+				},
+				{
+					"name": "deals"
+				},
+				{
+					"name": "loyalty"
+				},
 				{
 					"name": "orders"
-				}
-			],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "catalog",
-			"imageRepository": "nirmata/catalog",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"properties": [],
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [
+				},
 				{
-					"type": "urlRoute",
-					"route": "/catalog"
-				}
-			],
-			"dependsOn": [],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "shopme-gateway",
-			"imageRepository": "nirmata/nirmata-gateway",
-			"tag": "latest",
-			"serviceSpec": {
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [],
-			"dependsOn": [],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "deals",
-			"imageRepository": "nirmata/deals",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [
-				{
-					"type": "urlRoute",
-					"route": "/deals"
-				}
-			],
-			"dependsOn": [],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "loyalty",
-			"imageRepository": "nirmata/loyalty",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [
-				{
-					"type": "urlRoute",
-					"route": "/loyalty"
-				}
-			],
-			"dependsOn": [],
-			"requiredBy": [
-				{
-					"name": "recommendations"
-				}
-			],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "payment",
-			"imageRepository": "nirmata/payment",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [
-				{
-					"type": "urlRoute",
-					"route": "/payment"
-				}
-			],
-			"dependsOn": [],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "ratings",
-			"imageRepository": "nirmata/ratings",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [
-				{
-					"type": "urlRoute",
-					"route": "/ratings"
-				}
-			],
-			"dependsOn": [],
-			"requiredBy": [
-				{
-					"name": "recommendations"
-				}
-			],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "recommendations",
-			"imageRepository": "nirmata/recommendations",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
-			"gatewayRoutes": [
-				{
-					"type": "urlRoute",
-					"route": "/recommendations"
-				}
-			],
-			"dependsOn": [
+					"name": "payment"
+				},
 				{
 					"name": "ratings"
 				},
 				{
-					"name": "loyalty"
+					"name": "recommendations"
 				},
 				{
 					"name": "wishlist"
@@ -352,127 +105,399 @@
 			"requiredBy": [],
 			"serviceInstances": [],
 			"desiredServices": [],
-			"serviceAffinityRules": []
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "catalog",
+			"imageRepository": "nirmata/catalog",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [
+				{
+					"type": "urlRoute",
+					"route": "/catalog"
+				}
+			],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [
+				{
+					"name": "customer"
+				}
+			],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "shopme-gateway",
+			"imageRepository": "nirmata/nirmata-gateway",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [
+						"/usr/share/nirmata/ssl:/usr/share/nirmata/ssl"
+					],
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "deals",
+			"imageRepository": "nirmata/deals",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [
+				{
+					"type": "urlRoute",
+					"route": "/deals"
+				}
+			],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [
+				{
+					"name": "customer"
+				}
+			],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "loyalty",
+			"imageRepository": "nirmata/loyalty",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [
+				{
+					"type": "urlRoute",
+					"route": "/loyalty"
+				}
+			],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [
+				{
+					"name": "customer"
+				}
+			],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "payment",
+			"imageRepository": "nirmata/payment",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [
+				{
+					"type": "urlRoute",
+					"route": "/payment"
+				}
+			],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [
+				{
+					"name": "customer"
+				}
+			],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "ratings",
+			"imageRepository": "nirmata/ratings",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [
+				{
+					"type": "urlRoute",
+					"route": "/ratings"
+				}
+			],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [
+				{
+					"name": "customer"
+				}
+			],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		},
+		{
+			"name": "recommendations",
+			"imageRepository": "nirmata/recommendations",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [
+				{
+					"type": "urlRoute",
+					"route": "/recommendations"
+				}
+			],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [
+				{
+					"name": "customer"
+				}
+			],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
 		},
 		{
 			"name": "wishlist",
 			"imageRepository": "nirmata/wishlist",
 			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
 			"gatewayRoutes": [
 				{
 					"type": "urlRoute",
 					"route": "/wishlist"
 				}
 			],
+			"containerType": [],
 			"dependsOn": [],
 			"requiredBy": [
 				{
-					"name": "recommendations"
+					"name": "customer"
 				}
 			],
 			"serviceInstances": [],
 			"desiredServices": [],
-			"serviceAffinityRules": []
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
 		},
 		{
 			"name": "webclient",
 			"imageRepository": "nirmata/shopui",
 			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "/usr/local/bin/run",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					}
-				]
-			},
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 0,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
 			"gatewayRoutes": [
 				{
 					"type": "urlRoute",
 					"route": "/shopui"
 				}
 			],
+			"containerType": [],
 			"dependsOn": [],
 			"requiredBy": [],
 			"serviceInstances": [],
 			"desiredServices": [],
-			"serviceAffinityRules": []
-		},
-		{
-			"name": "mongo",
-			"imageRepository": "registry.nirmata.com/nirmata/mongodb-new",
-			"tag": "latest",
-			"serviceSpec": {
-				"runCommand": "",
-				"arguments": "",
-				"properties": [],
-				"hostname": "",
-				"volumeMappings": [],
-				"isPrivileged": false,
-				"volumesFrom": [],
-				"dns": [],
-				"networkMode": "bridge",
-				"enableServiceNetworking": true,
-				"portMappings": [
-					{
-						"containerPort": 80,
-						"type": "HTTP",
-						"hostPort": 0,
-						"name": "HTTP"
-					},
-					{
-						"containerPort": 27017,
-						"type": "TCP",
-						"hostPort": 0,
-						"name": "MONGO_PORT"
-					}
-				]
-			},
-			"gatewayRoutes": [],
-			"dependsOn": [],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": []
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
 		}
 	],
 	"webHooks": [],
 	"serviceAffinityRules": [],
 	"serviceScalingRules": [],
 	"environments": [],
-	"gateway": {
-		"name": "shopme-gateway"
-	}
+	"gateway": [
+		{
+			"name": "shopme-gateway"
+		}
+	]
 }
