@@ -1,0 +1,46 @@
+{
+	"name": "Wordpress",
+	"description": "Wordpress demo application based on a trusted build",
+	"services": [
+		{
+			"name": "docker-wordpress",
+			"imageRepository": "jbfink/docker-wordpress",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		}
+	],
+	"webHooks": [],
+	"serviceAffinityRules": [],
+	"serviceScalingRules": [],
+	"environments": [],
+	"gateway": []
+}
