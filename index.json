@@ -5,6 +5,11 @@
     "filename": "shopme.json"
   },
   {
+    "name": "Neflix OSS",
+    "description": "Collection of core Netflix OSS components for getting started with development of a microservices application",
+    "filename": "netflix-oss.json"
+  },
+  {
     "name": "Wordpress",
     "description": "Wordpress publishing application",
     "filename": "wordpress.json"

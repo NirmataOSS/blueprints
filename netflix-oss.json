@@ -1,0 +1,189 @@
+{
+	"name": "netflix-oss",
+	"description": "Netflix OSS starter application",
+	"services": [
+		{
+			"name": "eureka",
+			"imageRepository": "netflixoss/eureka",
+			"tag": "1.1.142",
+			"serviceSpec": {
+				"runCommand": "",
+				"arguments": "",
+				"properties": [],
+				"hostname": "",
+				"volumeMappings": [],
+				"isPrivileged": false,
+				"volumesFrom": [],
+				"dns": [],
+				"networkMode": "bridge",
+				"enableServiceNetworking": false,
+				"portMappings": [
+					{
+						"containerPort": 8080,
+						"type": "HTTP",
+						"hostPort": 8080,
+						"name": "HTTP"
+					}
+				]
+			},
+			"gatewayRoutes": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": []
+		},
+		{
+			"name": "asguard",
+			"imageRepository": "netflixoss/asgard",
+			"tag": "1.5",
+			"serviceSpec": {
+				"runCommand": "",
+				"arguments": "",
+				"properties": [],
+				"hostname": "",
+				"volumeMappings": [],
+				"isPrivileged": false,
+				"volumesFrom": [],
+				"dns": [],
+				"networkMode": "bridge",
+				"enableServiceNetworking": false,
+				"portMappings": [
+					{
+						"containerPort": 8080,
+						"type": "HTTP",
+						"hostPort": 8085,
+						"name": "HTTP"
+					}
+				]
+			},
+			"gatewayRoutes": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": []
+		},
+		{
+			"name": "zuul",
+			"imageRepository": "netflixoss/zuul",
+			"tag": "1.0.28",
+			"serviceSpec": {
+				"runCommand": "",
+				"arguments": "",
+				"properties": [],
+				"hostname": "",
+				"volumeMappings": [],
+				"isPrivileged": false,
+				"volumesFrom": [],
+				"dns": [],
+				"networkMode": "bridge",
+				"enableServiceNetworking": false,
+				"portMappings": [
+					{
+						"containerPort": 8080,
+						"type": "HTTP",
+						"hostPort": 8090,
+						"name": "HTTP"
+					}
+				]
+			},
+			"gatewayRoutes": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": []
+		},
+		{
+			"name": "exhibitor",
+			"imageRepository": "netflixoss/exhibitor",
+			"tag": "1.5.2",
+			"serviceSpec": {
+				"runCommand": "",
+				"arguments": "",
+				"properties": [],
+				"hostname": "",
+				"volumeMappings": [],
+				"isPrivileged": false,
+				"volumesFrom": [],
+				"dns": [],
+				"networkMode": "bridge",
+				"enableServiceNetworking": false,
+				"portMappings": [
+					{
+						"containerPort": 2181,
+						"type": "TCP",
+						"hostPort": 2181,
+						"name": "ZK_PORT_1"
+					},
+					{
+						"containerPort": 2888,
+						"type": "TCP",
+						"hostPort": 2888,
+						"name": "ZK_PORT_2"
+					},
+					{
+						"containerPort": 3888,
+						"type": "TCP",
+						"hostPort": 3888,
+						"name": "EX_PORT"
+					},
+					{
+						"containerPort": 8080,
+						"type": "HTTP",
+						"hostPort": 9090,
+						"name": "HTTP_PORT"
+					}
+				]
+			},
+			"gatewayRoutes": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": []
+		},
+		{
+			"name": "hello-netflix-oss",
+			"imageRepository": "netflixoss/hello-netflix-oss",
+			"tag": "1.0.27",
+			"serviceSpec": {
+				"runCommand": "",
+				"arguments": "",
+				"properties": [],
+				"hostname": "",
+				"volumeMappings": [],
+				"isPrivileged": false,
+				"volumesFrom": [],
+				"dns": [],
+				"networkMode": "bridge",
+				"enableServiceNetworking": false,
+				"portMappings": [
+					{
+						"containerPort": 8077,
+						"type": "TCP",
+						"hostPort": 8077,
+						"name": "OSS_PORT"
+					},
+					{
+						"containerPort": 8080,
+						"type": "HTTP",
+						"hostPort": 8095,
+						"name": "HTTP_PORT"
+					}
+				]
+			},
+			"gatewayRoutes": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": []
+		}
+	],
+	"webHooks": [],
+	"serviceAffinityRules": [],
+	"serviceScalingRules": [],
+	"environments": []
+}
