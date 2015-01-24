@@ -1,17 +1,22 @@
 [
   {
+    "name": "Hello World",
+    "description": "Simple hello world application. Requires 1 container.",
+    "filename": "hello-world.json"
+  },
+  {
     "name": "Shopme",
-    "description": "Simple microservices application",
+    "description": "Simple microservices application. Requires 11 containers.",
     "filename": "shopme.json"
   },
   {
     "name": "Neflix OSS",
-    "description": "Collection of core Netflix OSS components for getting started with development of a microservices application",
+    "description": "Collection of core Netflix OSS components for getting started with development of a microservices application. Requires 5 containers.",
     "filename": "netflix-oss.json"
   },
   {
     "name": "Wordpress",
-    "description": "Wordpress publishing application",
+    "description": "Wordpress publishing application. Requires 1 container.",
     "filename": "wordpress.json"
   }
 ]

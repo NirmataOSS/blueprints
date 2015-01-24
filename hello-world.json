@@ -1,0 +1,46 @@
+{
+	"name": "hello-world",
+	"description": "A simple hello world application",
+	"services": [
+		{
+			"name": "helloworld",
+			"imageRepository": "nirmata/helloworld",
+			"tag": "latest",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [],
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"volumesFrom": [],
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP"
+						}
+					]
+				}
+			],
+			"gatewayRoutes": [],
+			"containerType": [],
+			"dependsOn": [],
+			"requiredBy": [],
+			"serviceInstances": [],
+			"desiredServices": [],
+			"serviceAffinityRules": [],
+			"serviceScalingRules": [],
+			"gatewayApplication": []
+		}
+	],
+	"webHooks": [],
+	"serviceAffinityRules": [],
+	"serviceScalingRules": [],
+	"environments": [],
+	"gateway": []
+}
