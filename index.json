@@ -21,7 +21,7 @@
   },
   {
     "name": "Zookeeper 3.4.6",
-    "description": "Zookeeper multi-nodes cluster. Requires 3 containers & 3 hosts.",
+    "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
     "filename": "zookeeper-3-4-6.json"
   }
 ]
