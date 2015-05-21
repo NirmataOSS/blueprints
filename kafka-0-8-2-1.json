@@ -1,0 +1,222 @@
+{
+	"name": "Kafka-0-8-2-1",
+	"description": "Apache Kafka is publish-subscribe messaging rethought as a distributed commit log",
+	"services": [
+		{
+			"name": "zookeeper",
+			"imageRepository": "nirmata/zookeeper-3.4.6",
+			"tag": "latest",
+			"cluster": true,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [
+						"tickTime=2000",
+						"initLimit=50",
+						"syncLimit=50",
+						"autopurge_purgeInterval=1",
+						"globalOutstandingLimit=1000",
+						"snapCount=100000",
+						"maxClientCnxns=60",
+						"minSessionTimeout=4000",
+						"maxSessionTimeout=40000",
+						"fsync_warningthresholdms=1000",
+						"autopurge_snapRetainCount=3",
+						"autopurge_purgeInterval=0",
+						"syncEnabled=false",
+						"electionAlg=3",
+						"leaderServes=yes",
+						"cnxTimeout=5"
+					],
+					"hostname": "",
+					"volumeMappings": [
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/data:/tmp/zookeeper",
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/log:/var/log/supervisor"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"portMappings": [
+						{
+							"containerPort": 2181,
+							"type": "TCP",
+							"hostPort": 2181,
+							"name": "ZOOKEEPER_PORT",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "TCP",
+									"startDelay": 5,
+									"checkInterval": 5,
+									"checkTimeout": 30,
+									"failureThreshold": 3,
+									"successThreshold": 1,
+									"path": ""
+								}
+							]
+						},
+						{
+							"containerPort": 2888,
+							"type": "TCP",
+							"hostPort": 2888,
+							"name": "PEER_CONNECT",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 3888,
+							"type": "TCP",
+							"hostPort": 3888,
+							"name": "LEADER_ELECTION",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "TCP",
+					"startDelay": 5,
+					"checkInterval": 5,
+					"checkTimeout": 30,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "",
+					"endpoint": [
+						{
+							"containerPort": 2181,
+							"type": "TCP",
+							"hostPort": 2181,
+							"name": "ZOOKEEPER_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "kafka"
+				}
+			],
+			"serviceScalingRules": [
+				{
+					"desiredCount": 3,
+					"autoRecovery": false
+				}
+			]
+		},
+		{
+			"name": "kafka",
+			"imageRepository": "registry.nirmata.io/nirmata/kafka-test-cluster",
+			"tag": "latest",
+			"cluster": true,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"properties": [
+						"default_replication_factor=3",
+						"num_network_threads=2",
+						"num_io_threads=10",
+						"socket_send_buffer_bytes=1048576",
+						"socket_receive_buffer_bytes=1048576",
+						"socket_request_max_bytes=104857600",
+						"log_dirs=/tmp/kafka-logs",
+						"num_partitions=2",
+						"log_retention_hours=24",
+						"log_segment_bytes=536870912",
+						"log_retention_check_interval_ms=60000",
+						"log_cleaner_enable=false",
+						"zookeeper_connection_timeout_ms=1000000"
+					],
+					"hostname": "",
+					"volumeMappings": [
+						"/mnt/nirmata/kafka/node-{NIRMATA_CLUSTER_NODE_ID}:/tmp",
+						"/mnt/nirmata/kafka/node-{NIRMATA_CLUSTER_NODE_ID}/log:/var/log/supervisor"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"portMappings": [
+						{
+							"containerPort": 9092,
+							"type": "TCP",
+							"hostPort": 9092,
+							"name": "KAFKA_PORT",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "NONE",
+									"startDelay": 5,
+									"checkInterval": 5,
+									"checkTimeout": 30,
+									"failureThreshold": 3,
+									"successThreshold": 1,
+									"path": ""
+								}
+							]
+						},
+						{
+							"containerPort": 9999,
+							"type": "TCP",
+							"hostPort": 9999,
+							"name": "JMX_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 5,
+					"checkInterval": 5,
+					"checkTimeout": 30,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "",
+					"endpoint": [
+						{
+							"containerPort": 9092,
+							"type": "TCP",
+							"hostPort": 9092,
+							"name": "KAFKA_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "zookeeper"
+				}
+			],
+			"serviceScalingRules": [
+				{
+					"desiredCount": 3,
+					"autoRecovery": false
+				}
+			]
+		}
+	],
+	"serviceScalingRules": [
+		{
+			"desiredCount": 3,
+			"autoRecovery": false,
+			"services": [
+				{
+					"name": "kafka"
+				}
+			]
+		},
+		{
+			"desiredCount": 3,
+			"autoRecovery": false,
+			"services": [
+				{
+					"name": "zookeeper"
+				}
+			]
+		}
+	]
+}
