@@ -107,7 +107,7 @@
 		},
 		{
 			"name": "kafka",
-			"imageRepository": "registry.nirmata.io/nirmata/kafka-test-cluster",
+			"imageRepository": "nirmata/kafka-0.8.2.1",
 			"tag": "latest",
 			"cluster": true,
 			"serviceSpec": [
@@ -130,8 +130,8 @@
 					],
 					"hostname": "",
 					"volumeMappings": [
-						"/mnt/nirmata/kafka/node-{NIRMATA_CLUSTER_NODE_ID}:/tmp",
-						"/mnt/nirmata/kafka/node-{NIRMATA_CLUSTER_NODE_ID}/log:/var/log/supervisor"
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/kafka/node-{NIRMATA_CLUSTER_NODE_ID}:/tmp",
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/kafka/node-{NIRMATA_CLUSTER_NODE_ID}/log:/var/log/supervisor"
 					],
 					"isPrivileged": false,
 					"dns": [],
