@@ -27,7 +27,8 @@
 				}
 			],
 			"gatewayRoutes": [
-				{
+				{				
+					"endpoint": {"name": "HTTP"},
 					"type": "urlRoute",
 					"route": "/orders"
 				}
@@ -71,6 +72,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/customer"
 				}
@@ -135,6 +137,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/catalog"
 				}
@@ -214,6 +217,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/deals"
 				}
@@ -258,6 +262,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/loyalty"
 				}
@@ -301,6 +306,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/payment"
 				}
@@ -345,6 +351,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/ratings"
 				}
@@ -389,6 +396,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/recommendations"
 				}
@@ -433,6 +441,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/wishlist"
 				}
@@ -477,6 +486,7 @@
 			],
 			"gatewayRoutes": [
 				{
+					"endpoint": {"name": "HTTP"},				
 					"type": "urlRoute",
 					"route": "/shopui"
 				}
