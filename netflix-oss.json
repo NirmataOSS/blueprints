@@ -9,7 +9,7 @@
 			"serviceSpec": {
 				"runCommand": "",
 				"arguments": "",
-				"properties": [],
+				"properties": {},
 				"hostname": "",
 				"volumeMappings": [],
 				"isPrivileged": false,
@@ -40,7 +40,7 @@
 			"serviceSpec": {
 				"runCommand": "",
 				"arguments": "",
-				"properties": [],
+				"properties": {},
 				"hostname": "",
 				"volumeMappings": [],
 				"isPrivileged": false,
@@ -71,7 +71,7 @@
 			"serviceSpec": {
 				"runCommand": "",
 				"arguments": "",
-				"properties": [],
+				"properties": {},
 				"hostname": "",
 				"volumeMappings": [],
 				"isPrivileged": false,
@@ -102,7 +102,7 @@
 			"serviceSpec": {
 				"runCommand": "",
 				"arguments": "",
-				"properties": [],
+				"properties": {},
 				"hostname": "",
 				"volumeMappings": [],
 				"isPrivileged": false,
@@ -151,7 +151,7 @@
 			"serviceSpec": {
 				"runCommand": "",
 				"arguments": "",
-				"properties": [],
+				"properties": {},
 				"hostname": "",
 				"volumeMappings": [],
 				"isPrivileged": false,

@@ -9,7 +9,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,

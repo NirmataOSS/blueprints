@@ -8,7 +8,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -52,7 +52,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -117,7 +117,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -161,7 +161,7 @@
 			"tag": "latest",
 			"serviceSpec": [
 				{
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [
 						"/usr/share/nirmata/ssl:/usr/share/nirmata/ssl"
@@ -197,7 +197,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -242,7 +242,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -286,7 +286,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -331,7 +331,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -376,7 +376,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -421,7 +421,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,
@@ -466,7 +466,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [],
 					"isPrivileged": false,

@@ -10,7 +10,7 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [],
+					"properties": {},
 					"hostname": "",
 					"volumeMappings": [
 						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/supervisor:/var/log/supervisor",

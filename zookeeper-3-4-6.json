@@ -9,24 +9,24 @@
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": [
-						"tickTime=2000",
-						"initLimit=50",
-						"syncLimit=50",
-						"autopurge_purgeInterval=1",
-						"globalOutstandingLimit=1000",
-						"snapCount=100000",
-						"maxClientCnxns=60",
-						"minSessionTimeout=4000",
-						"maxSessionTimeout=40000",
-						"fsync_warningthresholdms=1000",
-						"autopurge_snapRetainCount=3",
-						"autopurge_purgeInterval=0",
-						"syncEnabled=false",
-						"electionAlg=3",
-						"leaderServes=yes",
-						"cnxTimeout=5"
-					],
+					"properties": {
+						"tickTime":"2000",
+						"initLimit":"50",
+						"syncLimit":"50",
+						"autopurge_purgeInterval":"1",
+						"globalOutstandingLimit":"1000",
+						"snapCount":"100000",
+						"maxClientCnxns":"60",
+						"minSessionTimeout":"4000",
+						"maxSessionTimeout":"40000",
+						"fsync_warningthresholdms":"1000",
+						"autopurge_snapRetainCount":"3",
+						"autopurge_purgeInterval":"0",
+						"syncEnabled":"false",
+						"electionAlg":"3",
+						"leaderServes":"yes",
+						"cnxTimeout":"5"
+					},
 					"hostname": "",
 					"volumeMappings": [
 						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/data:/tmp/zookeeper",
