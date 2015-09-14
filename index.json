@@ -33,5 +33,10 @@
     "name": "MongoDB 2.6",
     "description": "MongoDB is a cross-platform document-oriented database. Requires 3 containers & 3 hosts.",
     "filename": "mongodb-2-6.json"
+  },
+  {
+    "name": "OpenStack - Icehouse",
+    "description": "Core OpenStack services running in Docker containers. For more details, see https://github.com/Nirmata/openstack",
+    "filename": "openstack.json"
   }
 ]

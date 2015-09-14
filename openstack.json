@@ -1,0 +1,405 @@
+{
+	"name": "OpenStack",
+	"description": "Nirmata blueprint to deploy OpenStack sandbox",
+	"services": [
+		{
+			"name": "mysql",
+			"imageRepository": "nirmata/os-mysql",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MYSQL_PASS": "password"
+					},
+					"portMappings": [
+						{
+							"containerPort": 3306,
+							"type": "TCP",
+							"hostPort": 3306,
+							"name": "MYSQL_PORT",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "TCP",
+									"startDelay": 10,
+									"checkInterval": 10,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1,
+									"path": ""
+								}
+							]
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "TCP",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "",
+					"endpoint": [
+						{
+							"containerPort": 3306,
+							"type": "TCP",
+							"hostPort": 3306,
+							"name": "MYSQL_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "keystone"
+				},
+				{
+					"name": "glance"
+				},
+				{
+					"name": "nova"
+				}
+			]
+		},
+		{
+			"name": "rabbitmq",
+			"imageRepository": "nirmata/os-rabbitmq",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/var/log/openstack/rabbitmq:/var/log/supervisor"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"RABBITMQ_PASSWORD": "password"
+					},
+					"portMappings": [
+						{
+							"containerPort": 5672,
+							"type": "TCP",
+							"hostPort": 5672,
+							"name": "RABBITMQ_NODE_PORT",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 15672,
+							"type": "TCP",
+							"hostPort": 15672,
+							"name": "RABBITMQ_DIST_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "keystone"
+				},
+				{
+					"name": "glance"
+				},
+				{
+					"name": "nova"
+				}
+			]
+		},
+		{
+			"name": "keystone",
+			"imageRepository": "nirmata/os-keystone",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "keystone",
+					"volumeMappings": [
+						"/var/log/openstack/keystone:/var/log/supervisor"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"HOST_NAME": "{NIRMATA_HOST_NAME}",
+						"MYSQL_DB": "{mysql.NIRMATA_SERVICE_HOST_NAME}",
+						"MYSQL_USER": "admin",
+						"MYSQL_PASSWORD": "password",
+						"ADMIN_TOKEN": "password",
+						"KEYSTONE_DBPASS": "password"
+					},
+					"portMappings": [
+						{
+							"containerPort": 35357,
+							"type": "HTTP",
+							"hostPort": 35357,
+							"name": "KEYSTONE_PORT",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 5000,
+							"type": "HTTP",
+							"hostPort": 5000,
+							"name": "KEYSTONE_API_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "mysql"
+				},
+				{
+					"name": "rabbitmq"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "glance"
+				},
+				{
+					"name": "nova"
+				}
+			]
+		},
+		{
+			"name": "glance",
+			"imageRepository": "nirmata/os-glance",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "glance",
+					"volumeMappings": [
+						"/var/log/openstack/glance:/var/log/supervisor"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"HOST_NAME": "{NIRMATA_HOST_NAME}",
+						"MYSQL_DB": "{mysql.NIRMATA_SERVICE_HOST_NAME}",
+						"MYSQL_USER": "admin",
+						"MYSQL_PASSWORD": "password",
+						"RABBITMQ_HOST": "{rabbitmq.NIRMATA_SERVICE_HOST_NAME}",
+						"RABBITMQ_PASSWORD": "password",
+						"GLANCE_DBPASS": "password"
+					},
+					"portMappings": [
+						{
+							"containerPort": 9292,
+							"type": "HTTP",
+							"hostPort": 9292,
+							"name": "GLANCE_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "keystone"
+				},
+				{
+					"name": "mysql"
+				},
+				{
+					"name": "rabbitmq"
+				}
+			]
+		},
+		{
+			"name": "nova",
+			"imageRepository": "nirmata/os-nova",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "nova",
+					"volumeMappings": [
+						"/var/log/openstack/nova:/var/log/supervisor"
+					],
+					"isPrivileged": true,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"HOST_NAME": "{NIRMATA_HOST_NAME}",
+						"HOST_IP": "{NIRMATA_HOST_PUBLIC_ADDRESS}",
+						"MYSQL_DB": "{mysql.NIRMATA_SERVICE_HOST_NAME}",
+						"MYSQL_USER": "admin",
+						"MYSQL_PASSWORD": "password",
+						"RABBITMQ_HOST": "{rabbitmq.NIRMATA_SERVICE_HOST_NAME}",
+						"RABBITMQ_PASSWORD": "password",
+						"NOVA_DBPASS": "password",
+						"ADMIN_PASS": "password"
+					},
+					"portMappings": [
+						{
+							"containerPort": 8774,
+							"type": "HTTP",
+							"hostPort": 8774,
+							"name": "NOVA_ADMIN_PORT",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8775,
+							"type": "HTTP",
+							"hostPort": 8775,
+							"name": "NOVA_API_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "keystone"
+				},
+				{
+					"name": "mysql"
+				},
+				{
+					"name": "rabbitmq"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "horizon"
+				}
+			]
+		},
+		{
+			"name": "horizon",
+			"imageRepository": "nirmata/os-horizon",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "horizon",
+					"volumeMappings": [
+						"/var/log/openstack/horizon:/var/log/supervisor",
+						"/var/log/openstack/apache2:/var/log/apache2"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"HOST_NAME": "NIRMATA_HOST_NAME"
+					},
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "HTTP",
+							"hostPort": 80,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 11211,
+							"type": "HTTP",
+							"hostPort": 11211,
+							"name": "ADMIN",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "nova"
+				}
+			]
+		}
+	],
+	"serviceAffinityRules": [
+		{
+			"affinity": "sameHost"
+		}
+	]
+}
