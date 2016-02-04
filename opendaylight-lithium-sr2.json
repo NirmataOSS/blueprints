@@ -4,7 +4,7 @@
 	"services": [
 		{
 			"name": "opendaylight-lithium",
-			"imageRepository": "registry.nirmata.io/nirmata/opendaylight-lithium",
+			"imageRepository": "nirmata/opendaylight-lithium",
 			"tag": "latest",
 			"cluster": true,
 			"serviceSpec": [
