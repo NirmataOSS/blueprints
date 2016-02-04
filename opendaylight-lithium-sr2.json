@@ -1,0 +1,213 @@
+{
+	"name": "OpenDaylight",
+	"description": "Lithium is the third release of OpenDaylight, the open source platform for building programmable, software-defined networks. With Lithium, service providers and enterprises can transition to SDN with particular focus on broadening the programmability of intelligent networks.",
+	"services": [
+		{
+			"name": "opendaylight-lithium",
+			"imageRepository": "registry.nirmata.io/nirmata/opendaylight-lithium",
+			"tag": "latest",
+			"cluster": true,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/var/log/opendaylight:/opt/opendaylight/data/log"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"shards": "default,topology,inventory,toaster",
+						"shard_replicas_default": "1,2,3",
+						"shard_replicas_topology": "2,1,3",
+						"shard_replicas_inventory": "3,2,1",
+						"shard_replicas_toaster": "1,2"
+					},
+					"portMappings": [
+						{
+							"containerPort": 162,
+							"type": "TCP",
+							"hostPort": 162,
+							"name": "SNMP4SDN",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 179,
+							"type": "TCP",
+							"hostPort": 179,
+							"name": "BGP",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 1088,
+							"type": "TCP",
+							"hostPort": 1088,
+							"name": "JMX",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 1790,
+							"type": "TCP",
+							"hostPort": 1790,
+							"name": "BGO-PCEP",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 1830,
+							"type": "TCP",
+							"hostPort": 1830,
+							"name": "Netconf",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 2400,
+							"type": "TCP",
+							"hostPort": 2400,
+							"name": "OSGi-console",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 2550,
+							"type": "TCP",
+							"hostPort": 2550,
+							"name": "ODL-clustering-2550",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 2551,
+							"type": "TCP",
+							"hostPort": 2551,
+							"name": "ODL-clustering-2551",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 2552,
+							"type": "TCP",
+							"hostPort": 2552,
+							"name": "ODL-clustering-2552",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 4189,
+							"type": "TCP",
+							"hostPort": 4189,
+							"name": "PCEP",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 4342,
+							"type": "TCP",
+							"hostPort": 4342,
+							"name": "Lisp-Flow-Mapping",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 5005,
+							"type": "TCP",
+							"hostPort": 5005,
+							"name": "JConsole",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 5666,
+							"type": "TCP",
+							"hostPort": 5666,
+							"name": "ODL-clustering-RPC",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 6633,
+							"type": "TCP",
+							"hostPort": 6633,
+							"name": "OpenFlow",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 6640,
+							"type": "TCP",
+							"hostPort": 6640,
+							"name": "OVSDB",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 6653,
+							"type": "TCP",
+							"hostPort": 6653,
+							"name": "OpenFlow-6653",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 7800,
+							"type": "TCP",
+							"hostPort": 7800,
+							"name": "ODL-clustering-7800",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8000,
+							"type": "TCP",
+							"hostPort": 8000,
+							"name": "Java-debug",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "Web-portal",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8101,
+							"type": "TCP",
+							"hostPort": 8101,
+							"name": "KarafSSH",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8181,
+							"type": "TCP",
+							"hostPort": 8181,
+							"name": "MD-SAL",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8383,
+							"type": "TCP",
+							"hostPort": 8383,
+							"name": "Netconf",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 12001,
+							"type": "TCP",
+							"hostPort": 12001,
+							"name": "ODL-clustering-12001",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			]
+		}
+	],
+	"serviceScalingRules": [
+		{
+			"desiredCount": 3,
+			"autoRecovery": true
+		}
+	]
+}
