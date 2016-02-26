@@ -1,0 +1,60 @@
+{
+	"name": "DockerRegistry",
+	"description": "This blueprint is used to deploy a Docker Registry V2 with local storage. Before deploying the registry, you must edit the blueprint and  fill-in the VIRTUAL_HOST environment variable with the DNS name of your registry. Then, you must place the server certificate files in /opt/docker-registry/certs. You must also place the htpassword file under /opt/docker-registry/auth.",
+	"services": [
+		{
+			"name": "registry",
+			"imageRepository": "registry",
+			"tag": "2",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/opt/docker-registry/auth:/auth",
+						"/opt/docker-registry/certs:/certs",
+						"/opt/docker-registry/data:/var/lib/registry"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"REGISTRY_AUTH_HTPASSWD_PATH": "/auth/htpasswd",
+						"REGISTRY_LOG_LEVEL": "debug",
+						"VIRTUAL_HOST": "",
+						"REGISTRY_HTTP_TLS_CERTIFICATE": "/certs/domain.crt",
+						"REGISTRY_HTTP_TLS_KEY": "/certs/domain.key",
+						"REGISTRY_AUTH_HTPASSWD_REALM": "Registry Realm"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 5000,
+							"type": "HTTP",
+							"hostPort": 5000,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			]
+		}
+	]
+}

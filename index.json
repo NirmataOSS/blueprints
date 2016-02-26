@@ -26,6 +26,12 @@
   },
 
   {
+    "name": "Docker Registry (local storage)",
+    "description": "Docker Registry v2 with local storage",
+    "filename": "docker-registry-local-storage.json"
+  },
+
+  {
     "name": "Zookeeper 3.4.6",
     "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
     "filename": "zookeeper-3-4-6.json"
