@@ -24,13 +24,11 @@
     "description": "Lithium is the third release of OpenDaylight, the open source platform for building programmable, software-defined networks. With Lithium, service providers and enterprises can transition to SDN with particular focus on broadening the programmability of intelligent networks.",
     "filename": "opendaylight-lithium-sr2.json"
   },
-
   {
     "name": "Docker Registry (local storage)",
     "description": "Docker Registry v2 with local storage",
     "filename": "docker-registry-local-storage.json"
   },
-
   {
     "name": "Zookeeper 3.4.6",
     "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
