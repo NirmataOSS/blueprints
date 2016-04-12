@@ -38,5 +38,10 @@
     "name": "OpenStack - Icehouse",
     "description": "Core OpenStack services running in Docker containers. For more details, see https://github.com/Nirmata/openstack",
     "filename": "openstack.json"
+  },
+  {
+    "name": "Liferay 7.0",
+    "description": "Popular open source enterprise web platform for content management and collaboration. Requires 2 containers. For more details, see https://github.com/NirmataOSS/liferay",
+    "filename": "liferay.json"
   }
 ]

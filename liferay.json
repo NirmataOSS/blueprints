@@ -1,0 +1,143 @@
+{
+	"name": "Liferay",
+	"description": "Liferay Portal is a popular open source enterprise web platform for content management and collaboration. Version 7.0",
+	"services": [
+		{
+			"name": "mysql",
+			"imageRepository": "nirmata/liferay-mysql",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/data/mysql:/var/lib/mysql"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MYSQL_PASS": "password"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 3306,
+							"type": "TCP",
+							"hostPort": 3306,
+							"name": "MYSQL",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "512mb"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "liferay"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
+		},
+		{
+			"name": "liferay",
+			"imageRepository": "nirmata/liferay",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "/run.sh",
+					"hostname": "",
+					"volumeMappings": [
+						"/data/liferay:/opt/liferay-portal/data "
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MYSQL_DB_IP": "{mysql.NIRMATA_SERVICE_ADDRESS}"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "mysql"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
+		}
+	],
+	"serviceAffinityRules": [
+		{
+			"affinity": "sameHost",
+			"services": [
+				{
+					"name": "liferay"
+				},
+				{
+					"name": "mysql"
+				}
+			]
+		}
+	]
+}
