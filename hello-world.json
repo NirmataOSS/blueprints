@@ -19,9 +19,9 @@
 					"enableServiceNetworking": false,
 					"portMappings": [
 						{
-							"containerPort": 8080,
+							"containerPort": 80,
 							"type": "HTTP",
-							"hostPort": 8080,
+							"hostPort": 0,
 							"name": "HTTP"
 						}
 					]
