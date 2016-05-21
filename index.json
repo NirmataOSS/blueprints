@@ -32,7 +32,7 @@
   {
     "name": "Docker Registry (local storage)",
     "description": "Docker Registry v2 with local storage",
-    "filename": "docker-registry-local-storage.json”,
+    "filename": "docker-registry-local-storage.json",
     "application": "DockerRegistry"
   },
   {
