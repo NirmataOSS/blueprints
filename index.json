@@ -15,7 +15,8 @@
     "name": "Neflix OSS",
     "description": "Collection of core Netflix OSS components for getting started with development of a microservices application. Requires 5 containers.",
     "filename": "netflix-oss.json",
-    "application": "netflix-oss"
+    "application": "netflix-oss",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/netflix-oss.png"
   },
   {
     "name": "Wordpress",
@@ -34,7 +35,8 @@
     "name": "Docker Registry (local storage)",
     "description": "Docker Registry v2 with local storage",
     "filename": "docker-registry-local-storage.json",
-    "application": "DockerRegistry"
+    "application": "DockerRegistry",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/docker.png"
   },
   {
     "name": "Zookeeper",
@@ -64,7 +66,8 @@
     "name": "OpenStack Icehouse",
     "description": "Core OpenStack services running in Docker containers. For more details, see https://github.com/Nirmata/openstack",
     "filename": "openstack.json",
-    "application": "OpenStack"
+    "application": "OpenStack",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/openstack.png"
   },
   {
     "name": "Liferay",
