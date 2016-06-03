@@ -22,7 +22,8 @@
     "name": "Wordpress",
     "description": "Wordpress publishing application. Requires 1 container.",
     "filename": "wordpress.json",
-    "application": "Wordpress"
+    "application": "Wordpress",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/wordpress.png"
   },
   {
     "name": "OpenDaylight Lithium SR2",
@@ -32,7 +33,7 @@
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/opendaylight.png"
   },
   {
-    "name": "Docker Registry (local storage)",
+    "name": "Docker Registry",
     "description": "Docker Registry v2 with local storage",
     "filename": "docker-registry-local-storage.json",
     "application": "DockerRegistry",
