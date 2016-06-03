@@ -27,7 +27,8 @@
     "name": "OpenDaylight Lithium SR2",
     "description": "Lithium is the third release of OpenDaylight, the open source platform for building programmable, software-defined networks. With Lithium, service providers and enterprises can transition to SDN with particular focus on broadening the programmability of intelligent networks.",
     "filename": "opendaylight-lithium-sr2.json",
-    "application": "OpenDaylight"
+    "application": "OpenDaylight",
+    "icon": "opendaylight.png"
   },
   {
     "name": "Docker Registry (local storage)",
@@ -39,19 +40,22 @@
     "name": "Zookeeper 3.4.6",
     "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
     "filename": "zookeeper-3-4-6.json",
-    "application": "Zookeeper-3-4-6"
+    "application": "Zookeeper-3-4-6",
+    "icon": "zookeeper.png",
   },
   {
     "name": "Kafka 0.8.2.1",
     "description": "Apache Kafka is publish-subscribe messaging rethought as a distributed commit log. This blueprint also includes Zookeeper 3.4.6. Requires 3 containers & 3 hosts.",
     "filename": "kafka-0-8-2-1.json",
-    "application": "Kafka-0-8-2-1"
+    "application": "Kafka-0-8-2-1",
+    "icon": "kafka.png"
   },
     {
     "name": "MongoDB 2.6",
     "description": "MongoDB is a cross-platform document-oriented database. Requires 3 containers & 3 hosts.",
     "filename": "mongodb-2-6.json",
-    "application": "MongoDB-2-6"
+    "application": "MongoDB-2-6",
+    "icon": "mongodb.png"
   },
   {
     "name": "OpenStack - Icehouse",
@@ -63,6 +67,7 @@
     "name": "Liferay 7.0",
     "description": "Popular open source enterprise web platform for content management and collaboration. Requires 2 containers. For more details, see https://github.com/NirmataOSS/liferay",
     "filename": "liferay.json",
-    "application": "Liferay"
+    "application": "Liferay",
+    "icon": "liferay.png"
   }
 ]
