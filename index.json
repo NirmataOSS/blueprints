@@ -42,7 +42,7 @@
     "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
     "filename": "zookeeper-3-4-6.json",
     "application": "Zookeeper-3-4-6",
-    "icon": "zookeeper.png",
+    "icon": "zookeeper.png"
   },
   {
     "name": "Kafka",
