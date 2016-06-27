@@ -1,0 +1,115 @@
+{
+	"name": "Zookeeper-3-4-8",
+	"description": "Zookeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. By default this blueprint defines a clusters with 3 nodes. It means you must use a host group within at least 3 connected hosts to deploy this  zookeeper cluster. ",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "zookeeper",
+			"imageRepository": "nirmata/zookeeper-3.4.8",
+			"tag": "latest",
+			"cluster": true,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/data:/tmp/zookeeper",
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/log:/var/log/supervisor"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"properties": {
+						"tickTime": "2000",
+						"initLimit": "50",
+						"syncLimit": "5",
+						"autopurge_purgeInterval": "1",
+						"globalOutstandingLimit": "1000",
+						"snapCount": "100000",
+						"maxClientCnxns": "60",
+						"minSessionTimeout": "4000",
+						"maxSessionTimeout": "40000",
+						"fsync_warningthresholdms": "1000",
+						"autopurge_snapRetainCount": "3",
+						"syncEnabled": "false",
+						"electionAlg": "3",
+						"leaderServes": "yes",
+						"cnxTimeout": "5"
+					},
+					"loggingOptions": {},
+					"portMappings": [
+						{
+							"containerPort": 2181,
+							"type": "TCP",
+							"hostPort": 2181,
+							"name": "ZOOKEEPER_PORT",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "TCP",
+									"startDelay": 5,
+									"checkInterval": 5,
+									"checkTimeout": 30,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						},
+						{
+							"containerPort": 2888,
+							"type": "TCP",
+							"hostPort": 2888,
+							"name": "PEER_CONNECT",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 3888,
+							"type": "TCP",
+							"hostPort": 3888,
+							"name": "LEADER_ELECTION",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "TCP",
+					"startDelay": 5,
+					"checkInterval": 5,
+					"checkTimeout": 30,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "",
+					"endpoint": [
+						{
+							"containerPort": 2181
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "No Limit"
+				}
+			],
+			"serviceScalingRules": [
+				{
+					"desiredCount": 3
+				}
+			]
+		}
+	],
+	"serviceScalingRules": [
+		{
+			"desiredCount": 3,
+			"autoRecovery": false,
+			"services": [
+				{
+					"name": "zookeeper"
+				}
+			]
+		}
+	]
+}
