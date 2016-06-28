@@ -48,6 +48,14 @@
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/zookeeper.png"
   },
   {
+    "name": "Zookeeper",
+    "version": "3.4.8",
+    "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
+    "filename": "Zookeeper-3-4-8.json",
+    "application": "Zookeeper-3-4-8",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/zookeeper.png"
+  },
+  {
     "name": "Kafka",
     "version": "0.8.2.1",
     "description": "Apache Kafka is publish-subscribe messaging rethought as a distributed commit log. This blueprint also includes Zookeeper 3.4.6. Requires 3 containers & 3 hosts.",
