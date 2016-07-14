@@ -64,6 +64,14 @@
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/kafka.png"
   },
   {
+    "name": "Kafka",
+    "version": "0.10.0",
+    "description": "Apache Kafka is publish-subscribe messaging rethought as a distributed commit log. This blueprint also includes Zookeeper 3.4.6. Requires 3 containers & 3 hosts.",
+    "filename": "kafka-0-10-0.json",
+    "application": "Kafka-0-10-0",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/kafka.png"
+  },
+  {
     "name": "MongoDB",
     "version": "2.6",
     "description": "MongoDB is a cross-platform document-oriented database. Requires 3 containers & 3 hosts.",
