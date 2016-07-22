@@ -1,0 +1,71 @@
+{
+	"name": "MongoDB-3-3-9",
+	"description": "MongoDB (from humongous) is a cross-platform document-oriented database. MongoDB eschews the traditional table-based relational database structure in favor of JSON-like documents with dynamic schemas.\nBy default this blueprint defines a clusters with 3 nodes. It means you must use a host group within at least 3 connected hosts to deploy this MongoDB cluster.\n",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "mongodb",
+			"imageRepository": "nirmata/mongodb-3.3.9",
+			"tag": "latest",
+			"cluster": true,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/supervisor:/var/log/supervisor",
+						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/data:/data/db"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {},
+					"loggingOptions": {},
+					"portMappings": [
+						{
+							"containerPort": 27017,
+							"type": "TCP",
+							"hostPort": 27017,
+							"name": "SERVICE_PORT",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "No Limit"
+				}
+			],
+			"serviceScalingRules": [
+				{
+					"desiredCount": 3
+				}
+			]
+		}
+	],
+	"serviceScalingRules": [
+		{
+			"desiredCount": 3,
+			"autoRecovery": false,
+			"services": [
+				{
+					"name": "mongodb"
+				}
+			]
+		}
+	]
+}

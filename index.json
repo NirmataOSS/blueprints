@@ -72,11 +72,27 @@
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/kafka.png"
   },
   {
+    "name": "Nginx",
+    "version": "1.11.1",
+    "description": "Nginx is a web server which can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache. Requires 1 container.",
+    "filename": "nginx-1-11-1.json",
+    "application": "Nginx-1-11-1",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/nginx.png"
+  },
+  {
     "name": "MongoDB",
     "version": "2.6",
     "description": "MongoDB is a cross-platform document-oriented database. Requires 3 containers & 3 hosts.",
     "filename": "mongodb-2-6.json",
     "application": "MongoDB-2-6",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/mongodb.png"
+  },
+  {
+    "name": "MongoDB",
+    "version": "3.3.9",
+    "description": "MongoDB is a cross-platform document-oriented database. Requires 3 containers & 3 hosts.",
+    "filename": "MongoDB-3-3-9.json",
+    "application": "MongoDB-3-3-9",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/mongodb.png"
   },
   {
