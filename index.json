@@ -75,7 +75,7 @@
     "name": "Nginx",
     "version": "1.11.1",
     "description": "Nginx is a web server which can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache. Requires 1 container.",
-    "filename": "nginx.json",
+    "filename": "Nginx-1-11-1.json",
     "application": "Nginx-1-11-1",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/nginx.png"
   },
