@@ -1,0 +1,84 @@
+{
+	"name": "Nginx-1-11-1",
+	"description": "Nginx is a web server which can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache.",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "nginx",
+			"imageRepository": "nirmata/nginx",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/mnt/nirmata/nginx/sites-enabled:/etc/nginx/sites-enabled",
+						"/mnt/nirmata/nginx/log:/var/log/nginx",
+						"/mnt/nirmata/nginx/ssl/certs:/etc/nginx/ssl/certs",
+						"/mnt/nirmata/nginx/ssl/private:/etc/nginx/ssl/private"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"": ""
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 80,
+							"type": "TCP",
+							"hostPort": 80,
+							"name": "HTTP",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "HTTP",
+									"startDelay": 5,
+									"checkInterval": 5,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						},
+						{
+							"containerPort": 443,
+							"type": "TCP",
+							"hostPort": 443,
+							"name": "HTTPS",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "HTTP",
+					"startDelay": 5,
+					"checkInterval": 5,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "",
+					"endpoint": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "No Limit"
+				}
+			]
+		}
+	]
+}
