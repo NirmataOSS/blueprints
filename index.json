@@ -114,7 +114,7 @@
     "name": "Mesos",
     "version": "1.0",
     "description": "Apache Mesos is a cluster manager that provides efficient resource isolation and sharing across distributed applications or frameworks",
-    "filename": "mesos/mesos-marathon.json",
+    "filename": "mesos-marathon.json",
     "application": "Mesos",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/mesos/mesos.png"
   }

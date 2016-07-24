@@ -1,0 +1,295 @@
+{
+	"name": "mesos-marathon",
+	"description": "",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "zk",
+			"imageRepository": "bobrik/zookeeper",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"ZK_CONFIG": "tickTime=2000,initLimit=10,syncLimit=5,maxClientCnxns=128,forceSync=no,clientPort=2181",
+						"ZK_ID": "1"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					}
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimits"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "mesos-master"
+				},
+				{
+					"name": "marathon"
+				},
+				{
+					"name": "ms-slave"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
+		},
+		{
+			"name": "mesos-master",
+			"imageRepository": "mesosphere/mesos-master",
+			"tag": "1.0.0-rc2",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MESOS_ZK": "zk://127.0.0.1:2181/mesos",
+						"MESOS_QUORUM": "1",
+						"MESOS_CLUSTER": "nirmata-mesos",
+						"MESOS_REGISTRY": "replicated_log",
+						"MESOS_HOSTNAME": "{NIRMATA_HOST_PRIVATE_ADDRESS}",
+						"LIBPROCESS_IP": "{NIRMATA_HOST_PRIVATE_ADDRESS}"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 5050,
+							"type": "HTTP",
+							"hostPort": 5050,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimits"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "zk"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "ms-slave"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
+		},
+		{
+			"name": "ms-slave",
+			"imageRepository": "mesosphere/mesos-slave",
+			"tag": "1.0.0-rc2",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/cgroup:/cgroup",
+						"/var/run/docker.sock:/var/run/docker.sock",
+						"/usr/bin/docker:/usr/local/bin/docker",
+						"/sys:/sys",
+						"/lib/x86_64-linux-gnu/libsystemd-journal.so.0:/lib/x86_64-linux-gnu/libsystemd-journal.so.0",
+						"/usr/lib/x86_64-linux-gnu/libapparmor.so.1:/usr/lib/x86_64-linux-gnu/libapparmor.so.1"
+					],
+					"isPrivileged": true,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MESOS_MASTER": "zk://{zk.NIRMATA_SERVICE_ADDRESS}:2181/mesos",
+						"MESOS_CONTAINERIZERS": "mesos,docker",
+						"MESOS_PORT": "5051",
+						"MESOS_RESOURCES": "ports(*):[11000-11999]",
+						"MESOS_HOSTNAME": "{NIRMATA_HOST_PRIVATE_ADDRESS}",
+						"LIBPROCESS_IP": "{NIRMATA_HOST_PRIVATE_ADDRESS}",
+						"MESOS_WORK_DIR": "/tmp/mesos"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 5051,
+							"type": "HTTP",
+							"hostPort": 5051,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimits"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "mesos-master"
+				},
+				{
+					"name": "zk"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "uniqueHost"
+				}
+			]
+		},
+		{
+			"name": "marathon",
+			"imageRepository": "mesosphere/marathon",
+			"tag": "v1.1.1",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MARATHON_MASTER": "zk://127.0.0.1:2181/mesos"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimits"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "zk"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
+		}
+	],
+	"serviceAffinityRules": [
+		{
+			"affinity": "sameHost",
+			"services": [
+				{
+					"name": "marathon"
+				},
+				{
+					"name": "mesos-master"
+				},
+				{
+					"name": "zk"
+				}
+			]
+		},
+		{
+			"affinity": "uniqueHost",
+			"services": [
+				{
+					"name": "ms-slave"
+				}
+			]
+		}
+	]
+}
