@@ -60,7 +60,7 @@
     "version": "3.5.1-alpha",
     "description": "Zookeeper multi-node cluster. Requires 3 containers & 3 hosts.",
     "filename": "zookeeper-3-5-1-alpha.json",
-    "application": "Zookeeper-3-5-1-alpha",
+    "application": "zookeeper-3-5-1-alpha",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/zookeeper.png"
   },
   {
