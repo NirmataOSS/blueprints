@@ -1,0 +1,57 @@
+{
+	"name": "petclinic",
+	"description": "A sample Spring-based application.",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "petclinic",
+			"imageRepository": "nirmata/petclinic",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"": ""
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "2GB"
+				}
+			]
+		}
+	]
+}
