@@ -5,7 +5,7 @@
 	"services": [
 		{
 			"name": "zookeeper",
-			"imageRepository": "nirmata/zookeeper-3.4.6",
+			"imageRepository": "nirmata/zookeeper-3.5.1-alpha",
 			"tag": "latest",
 			"cluster": true,
 			"serviceSpec": [
@@ -18,7 +18,7 @@
 					],
 					"isPrivileged": false,
 					"dns": [],
-					"networkMode": "bridge",
+					"networkMode": "host",
 					"enableServiceNetworking": false,
 					"properties": {
 						"tickTime": "2000",
@@ -27,7 +27,7 @@
 						"autopurge_purgeInterval": "0",
 						"globalOutstandingLimit": "1000",
 						"snapCount": "100000",
-						"maxClientCnxns": "60",
+						"maxClientCnxns": "200",
 						"minSessionTimeout": "4000",
 						"maxSessionTimeout": "40000",
 						"fsync_warningthresholdms": "1000",
@@ -91,7 +91,7 @@
 			],
 			"containerType": [
 				{
-					"name": "No Limit"
+					"name": "nolimits"
 				}
 			],
 			"requiredBy": [
@@ -120,7 +120,7 @@
 					],
 					"isPrivileged": false,
 					"dns": [],
-					"networkMode": "bridge",
+					"networkMode": "host",
 					"enableServiceNetworking": false,
 					"properties": {
 						"default_replication_factor": "3",
@@ -134,7 +134,7 @@
 						"log_retention_hours": "24",
 						"log_segment_bytes": "536870912",
 						"log_retention_check_interval_ms": "60000",
-						"log_cleaner_enable": "false",
+						"log_cleaner_enable": "true",
 						"zookeeper_connection_timeout_ms": "1000000"
 					},
 					"loggingOptions": {},
@@ -184,7 +184,7 @@
 			],
 			"containerType": [
 				{
-					"name": "No Limit"
+					"name": "nolimits"
 				}
 			],
 			"dependsOn": [
