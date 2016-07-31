@@ -149,5 +149,5 @@
     "filename": "petclinic-mysql.json",
     "application": "PetClinic-MySQL",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/petclinic/petclinic.png"
-  },
+  }
 ]
