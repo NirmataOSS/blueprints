@@ -1,0 +1,59 @@
+{
+	"name": "mysql",
+	"description": "",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "mysql",
+			"imageRepository": "nirmata/mysql",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/data/mysql:/var/lib/mysql"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MYSQL_PASS": "password"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 3306,
+							"type": "TCP",
+							"hostPort": 3306,
+							"name": "TCP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "1GB"
+				}
+			]
+		}
+	]
+}
