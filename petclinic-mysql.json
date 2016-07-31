@@ -1,0 +1,134 @@
+{
+	"name": "petclinic-mysql",
+	"description": "A sample Spring-based application. This blueprint uses MySQL database.",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "petclinic",
+			"imageRepository": "nirmata/petclinic",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"JAVA_OPTS": "-Djpa.database=MYSQL -Djdbc.driverClassName=com.mysql.jdbc.Driver -Djdbc.username=admin -Djdbc.password=password -Djdbc.url='jdbc:mysql://{mysql.NIRMATA_SERVICE_ADDRESS}:3306/petclinic?useUnicode=true&characterEncoding=UTF-8' -Djdbc.initLocation=classpath:db/mysql/initDB.sql -Djdbc.dataLocation=classpath:db/mysql/populateDB.sql -Dhibernate.dialect=org.hibernate.dialect.MySQLDialect -Djava.security.egd=file:/dev/./urandom"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "2GB"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "mysql"
+				}
+			]
+		},
+		{
+			"name": "mysql",
+			"imageRepository": "nirmata/mysql-petclinic",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/data/petclinic/mysql:/var/lib/mysql"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"MYSQL_PASS": "password"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 3306,
+							"type": "TCP",
+							"hostPort": 3306,
+							"name": "TCP",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "TCP",
+									"startDelay": 15,
+									"checkInterval": 10,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "TCP",
+					"startDelay": 15,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "",
+					"endpoint": [
+						{
+							"containerPort": 3306
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "1GB"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "petclinic"
+				}
+			]
+		}
+	]
+}
