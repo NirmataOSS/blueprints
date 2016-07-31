@@ -143,11 +143,11 @@
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/petclinic/petclinic.png"
   },
   {
-    "name": "Pet Clinic (MySQL)",
+    "name": "Pet Clinic - MySQL",
     "version": "1",
     "description": "A sample Spring-based application. This version uses MySQL as the backend database",
     "filename": "petclinic-mysql.json",
-    "application": "PetClinic-MySQL",
+    "application": "PetClinicMySQL",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/petclinic/petclinic.png"
   }
 ]
