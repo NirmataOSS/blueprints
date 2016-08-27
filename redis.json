@@ -1,0 +1,121 @@
+{
+	"name": "redis",
+	"description": "",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "redis-master",
+			"imageRepository": "redis",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/data/redis-master:/data"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"": ""
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 6379,
+							"type": "TCP",
+							"hostPort": 6379,
+							"name": "TCP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimits"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "redis-slave"
+				}
+			]
+		},
+		{
+			"name": "redis-slave",
+			"imageRepository": "redis",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "redis-server --slaveof {REDIS_MASTER_ADDR} {REDIS_MASTER_PORT} --slave-announce-ip {NIRMATA_HOST_ADDRESS} --slave-announce-port {SLAVE_HOST_PORT}",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"REDIS_MASTER_ADDR": "{redis-master.NIRMATA_SERVICE_ADDRESS}",
+						"REDIS_MASTER_PORT": "{redis-master.NIRMATA_SERVICE_PORT.TCP}",
+						"SLAVE_HOST_PORT": "{redis-slave.NIRMATA_SERVICE_PORT.TCP}"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"portMappings": [
+						{
+							"containerPort": 6379,
+							"type": "TCP",
+							"hostPort": 0,
+							"name": "TCP",
+							"enableServiceNetworking": false
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimits"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "redis-master"
+				}
+			]
+		}
+	]
+}

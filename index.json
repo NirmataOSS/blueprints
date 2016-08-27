@@ -149,5 +149,13 @@
     "filename": "petclinic-mysql.json",
     "application": "PetClinicMySQL",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/petclinic/petclinic.png"
-  }
+  },
+  {
+    "name": "Redis",
+    "version": "3.2",
+    "description": "Redis is an open source, in-memory data structure store used as database, cache and message broker.",
+    "filename": "redis.json",
+    "application": "Redis",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/redis/redis.png"
+  },
 ]
