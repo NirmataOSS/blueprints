@@ -157,5 +157,5 @@
     "filename": "redis.json",
     "application": "Redis",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/redis/redis.png"
-  },
+  }
 ]
