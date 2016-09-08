@@ -31,14 +31,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -56,21 +48,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -115,14 +92,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -140,21 +109,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -220,14 +174,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -245,21 +191,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -305,14 +236,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -330,21 +253,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -385,14 +293,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -410,21 +310,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -470,14 +355,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -495,21 +372,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -554,14 +416,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -579,21 +433,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -639,14 +478,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -664,21 +495,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -724,14 +540,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -749,21 +557,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -809,14 +602,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -834,21 +619,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
@@ -894,14 +664,6 @@
 									"checkTimeout": 10,
 									"failureThreshold": 3,
 									"successThreshold": 1
-								},
-								{
-									"type": "TCP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
 								}
 							]
 						}
@@ -919,21 +681,6 @@
 									"containerPort": 80
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"endpoint": [
-						{
-							"containerPort": 80
 						}
 					]
 				}
