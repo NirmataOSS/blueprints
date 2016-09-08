@@ -55,21 +55,21 @@
 							"name": "HTTPS",
 							"enableServiceNetworking": false
 						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "HTTP",
-					"startDelay": 5,
-					"checkInterval": 5,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": "",
-					"endpoint": [
+					],
+					"healthCheck": [
 						{
-							"containerPort": 80
+							"type": "HTTP",
+							"startDelay": 5,
+							"checkInterval": 5,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "",
+							"endpoint": [
+								{
+									"containerPort": 80
+								}
+							]
 						}
 					]
 				}
