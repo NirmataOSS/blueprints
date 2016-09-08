@@ -41,7 +41,7 @@
 							"name": "HTTP",
 							"enableServiceNetworking": false
 						}
-					]
+					],
 					"healthCheck": [
 						{
 							"type": "NONE",
@@ -54,7 +54,7 @@
 						}
 					]
 				}
-			],
+			]
 			
 		}
 	]
