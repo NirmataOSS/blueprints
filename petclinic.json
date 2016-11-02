@@ -49,7 +49,7 @@
 			],
 			"containerType": [
 				{
-					"name": "2GB"
+					"name": "nolimits"
 				}
 			]
 		}
