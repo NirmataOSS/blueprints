@@ -1,0 +1,361 @@
+{
+	"name": "ElasticSearch",
+	"description": "Blueprint for 3 node elasticsearch cluster with kibana",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "elasticsearch",
+			"imageRepository": "nirmata/elasticsearch-demo",
+			"tag": "latest",
+			"cluster": true,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/elasticsearch:/es"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"ES_CLUSTER_NAME": "nirmataops",
+						"ES_DATA_DIR": "/es/data",
+						"ES_LOG_DIR": "/es/log",
+						"ES_PUBLIC_IP": "{NIRMATA_HOST_ADDRESS}",
+						"ES_HEAP_SIZE": "10g"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"portMappings": [
+						{
+							"containerPort": 9200,
+							"type": "HTTP",
+							"hostPort": 9200,
+							"name": "HTTP",
+							"enableServiceNetworking": false,
+							"healthChecks": [
+								{
+									"type": "HTTP",
+									"startDelay": 10,
+									"checkInterval": 10,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								},
+								{
+									"type": "NONE",
+									"startDelay": 10,
+									"checkInterval": 10,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						},
+						{
+							"containerPort": 9300,
+							"type": "TCP",
+							"hostPort": 9300,
+							"name": "TCP",
+							"enableServiceNetworking": false
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "/",
+							"endpoint": [
+								{
+									"containerPort": 9200
+								}
+							]
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "HTTP",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": "/",
+					"endpoint": [
+						{
+							"containerPort": 9200
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "kibana"
+				}
+			],
+			"serviceScalingRules": [
+				{
+					"desiredCount": 3
+				}
+			]
+		},
+		{
+			"name": "kibana",
+			"imageRepository": "nirmata/kibana",
+			"tag": "4",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"ELASTIC_IP": "{elasticsearch.NIRMATA_SERVICE_ADDRESS}",
+						"ELASTIC_PORT": "{elasticsearch.NIRMATA_SERVICE_PORT.HTTP}"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"portMappings": [
+						{
+							"containerPort": 5601,
+							"type": "HTTP",
+							"hostPort": 8888,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "elasticsearch"
+				}
+			]
+		}
+	],
+	"serviceScalingRules": [
+		{
+			"desiredCount": 3,
+			"autoRecovery": true,
+			"services": [
+				{
+					"name": "elasticsearch"
+				}
+			]
+		}
+	],
+	"environmentVariables": [
+		{
+			"key": "ES_PUBLIC_IP",
+			"value": "{NIRMATA_HOST_ADDRESS}",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_LOG_DIR",
+			"value": "/es/log",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ELASTIC_PORT",
+			"value": "{elasticsearch.NIRMATA_SERVICE_PORT.HTTP}",
+			"services": [
+				"kibana"
+			]
+		},
+		{
+			"key": "ES_CLUSTER_NAME",
+			"value": "nirmatademo",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_LOG_DIR",
+			"value": "/es/log",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ELASTIC_IP",
+			"value": "{elasticsearch.NIRMATA_SERVICE_ADDRESS}",
+			"services": [
+				"kibana"
+			]
+		},
+		{
+			"key": "ES_HEAP_SIZE",
+			"value": "2g",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_DATA_DIR",
+			"value": "/es/data",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_MINIMUM_MASTERS",
+			"value": "1",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_RECOVER_AFTER_NODES",
+			"value": "2",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_EXPECTED_NODES",
+			"value": "3",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_RECOVER_AFTER_TIME",
+			"value": "5m",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_MASTER_NODE",
+			"value": "true",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_DATA_NODE",
+			"value": "true",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_NODE_NAME",
+			"value": "es-node-{NIRMATA_CLUSTER_NODE_ID}",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_PUBLIC_IP",
+			"value": "{NIRMATA_HOST_ADDRESS}",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_CLUSTER_NAME",
+			"value": "nirmataops",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_LOG_DIR",
+			"value": "/es/log",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ELASTIC_IP",
+			"value": "{elasticsearch.NIRMATA_SERVICE_ADDRESS}",
+			"services": [
+				"kibana"
+			]
+		},
+		{
+			"key": "ES_HEAP_SIZE",
+			"value": "10g",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ES_DATA_DIR",
+			"value": "/es/data",
+			"services": [
+				"elasticsearch"
+			]
+		},
+		{
+			"key": "ELASTIC_PORT",
+			"value": "{elasticsearch.NIRMATA_SERVICE_PORT.HTTP}",
+			"services": [
+				"kibana"
+			]
+		}
+	],
+	"routingPolicy": [
+		{
+			"defaultAction": "allow",
+			"target": "ElasticSearch"
+		}
+	]
+}

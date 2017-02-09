@@ -157,5 +157,13 @@
     "filename": "redis.json",
     "application": "Redis",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/redis/redis.png"
+  },
+  {
+    "name": "ElasticSearch",
+    "version": "1.7",
+    "description": "Blueprint for 3 node ElasticSearch cluster with Kibana",
+    "filename": "elasticsearch.json",
+    "application": "ElasticSearch",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/elasticsearch/elasticsearch.png"
   }
 ]
