@@ -292,13 +292,6 @@
 			"services": [
 				"elasticsearch"
 			]
-		},
-		{
-			"key": "ES_CLUSTER_NAME",
-			"value": "esdemo",
-			"services": [
-				"elasticsearch"
-			]
 		}
 	],
 	"routingPolicy": [
