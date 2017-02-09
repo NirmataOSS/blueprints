@@ -49,7 +49,7 @@
 			],
 			"containerType": [
 				{
-					"name": "2GB"
+					"name": "nolimits"
 				}
 			],
 			"dependsOn": [
@@ -121,7 +121,7 @@
 			],
 			"containerType": [
 				{
-					"name": "1GB"
+					"name": "nolimits"
 				}
 			],
 			"requiredBy": [
