@@ -20,13 +20,7 @@
 					"networkMode": "bridge",
 					"enableServiceNetworking": false,
 					"user": "",
-					"properties": {
-						"ES_CLUSTER_NAME": "nirmataops",
-						"ES_DATA_DIR": "/es/data",
-						"ES_LOG_DIR": "/es/log",
-						"ES_PUBLIC_IP": "{NIRMATA_HOST_ADDRESS}",
-						"ES_HEAP_SIZE": "10g"
-					},
+					"properties": {},
 					"loggingType": "DEFAULT",
 					"loggingOptions": {
 						"": ""
@@ -131,10 +125,7 @@
 					"networkMode": "bridge",
 					"enableServiceNetworking": false,
 					"user": "",
-					"properties": {
-						"ELASTIC_IP": "{elasticsearch.NIRMATA_SERVICE_ADDRESS}",
-						"ELASTIC_PORT": "{elasticsearch.NIRMATA_SERVICE_PORT.HTTP}"
-					},
+					"properties": {},
 					"loggingType": "DEFAULT",
 					"loggingOptions": {
 						"": ""
