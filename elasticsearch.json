@@ -20,13 +20,7 @@
 					"networkMode": "bridge",
 					"enableServiceNetworking": false,
 					"user": "",
-					"properties": {
-						"ES_CLUSTER_NAME": "nirmataops",
-						"ES_DATA_DIR": "/es/data",
-						"ES_LOG_DIR": "/es/log",
-						"ES_PUBLIC_IP": "{NIRMATA_HOST_ADDRESS}",
-						"ES_HEAP_SIZE": "10g"
-					},
+					"properties": {},
 					"loggingType": "DEFAULT",
 					"loggingOptions": {
 						"": ""
@@ -131,10 +125,7 @@
 					"networkMode": "bridge",
 					"enableServiceNetworking": false,
 					"user": "",
-					"properties": {
-						"ELASTIC_IP": "{elasticsearch.NIRMATA_SERVICE_ADDRESS}",
-						"ELASTIC_PORT": "{elasticsearch.NIRMATA_SERVICE_PORT.HTTP}"
-					},
+					"properties": {},
 					"loggingType": "DEFAULT",
 					"loggingOptions": {
 						"": ""
@@ -300,55 +291,6 @@
 			"value": "es-node-{NIRMATA_CLUSTER_NODE_ID}",
 			"services": [
 				"elasticsearch"
-			]
-		},
-		{
-			"key": "ES_PUBLIC_IP",
-			"value": "{NIRMATA_HOST_ADDRESS}",
-			"services": [
-				"elasticsearch"
-			]
-		},
-		{
-			"key": "ES_CLUSTER_NAME",
-			"value": "nirmataops",
-			"services": [
-				"elasticsearch"
-			]
-		},
-		{
-			"key": "ES_LOG_DIR",
-			"value": "/es/log",
-			"services": [
-				"elasticsearch"
-			]
-		},
-		{
-			"key": "ELASTIC_IP",
-			"value": "{elasticsearch.NIRMATA_SERVICE_ADDRESS}",
-			"services": [
-				"kibana"
-			]
-		},
-		{
-			"key": "ES_HEAP_SIZE",
-			"value": "10g",
-			"services": [
-				"elasticsearch"
-			]
-		},
-		{
-			"key": "ES_DATA_DIR",
-			"value": "/es/data",
-			"services": [
-				"elasticsearch"
-			]
-		},
-		{
-			"key": "ELASTIC_PORT",
-			"value": "{elasticsearch.NIRMATA_SERVICE_PORT.HTTP}",
-			"services": [
-				"kibana"
 			]
 		}
 	],
