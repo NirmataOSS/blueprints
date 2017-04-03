@@ -165,5 +165,14 @@
     "filename": "elasticsearch.json",
     "application": "ElasticSearch",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/elasticsearch/elasticsearch.png"
+  },
+  {
+    "name": "Sonatype Nexus",
+    "version": "3",
+    "description": "Blueprint for Sonatype Nexus Repository Manager 3",
+    "filename": "nexus.json",
+    "application": "Sonatype Nexus",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/nexus/nexus.png"
   }
+
 ]
