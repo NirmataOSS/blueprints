@@ -1,0 +1,82 @@
+{
+	"name": "Nexus",
+	"description": "Sonatype Nexus Repository Manager 3",
+	"defaultRouteAction": "allow",
+	"services": [
+		{
+			"name": "nexus3",
+			"imageRepository": "sonatype/nexus3",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"nexus-data:/nexus-data"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": true,
+					"user": "",
+					"properties": {},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"portMappings": [
+						{
+							"containerPort": 5000,
+							"type": "TCP",
+							"hostPort": 5000,
+							"name": "Docker",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 8081,
+							"type": "HTTP",
+							"hostPort": 8081,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					]
+				}
+			],
+			"healthCheck": [
+				{
+					"type": "NONE",
+					"startDelay": 10,
+					"checkInterval": 10,
+					"checkTimeout": 10,
+					"failureThreshold": 3,
+					"successThreshold": 1,
+					"path": ""
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			]
+		}
+	],
+	"routingPolicy": [
+		{
+			"defaultAction": "allow",
+			"target": "Nexus"
+		}
+	]
+}
