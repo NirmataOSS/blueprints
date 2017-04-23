@@ -13,7 +13,7 @@
 					"runCommand": "",
 					"hostname": "",
 					"volumeMappings": [
-						"nexus-data:/nexus-data"
+						"/nexus-data:/nexus-data"
 					],
 					"isPrivileged": false,
 					"dns": [],
