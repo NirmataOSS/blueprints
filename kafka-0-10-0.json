@@ -45,7 +45,7 @@
 							"hostPort": 2181,
 							"name": "ZOOKEEPER_PORT",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 5,
@@ -145,7 +145,7 @@
 							"hostPort": 9092,
 							"name": "KAFKA_PORT",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "NONE",
 									"startDelay": 5,

@@ -55,17 +55,6 @@
 					]
 				}
 			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
-				}
-			],
 			"containerType": [
 				{
 					"name": "nolimit"
