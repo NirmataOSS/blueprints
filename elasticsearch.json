@@ -33,17 +33,9 @@
 							"hostPort": 9200,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "HTTP",
-									"startDelay": 10,
-									"checkInterval": 10,
-									"checkTimeout": 10,
-									"failureThreshold": 3,
-									"successThreshold": 1
-								},
-								{
-									"type": "NONE",
 									"startDelay": 10,
 									"checkInterval": 10,
 									"checkTimeout": 10,
@@ -62,7 +54,7 @@
 					],
 					"healthCheck": [
 						{
-							"type": "NONE",
+							"type": "HTTP",
 							"startDelay": 10,
 							"checkInterval": 10,
 							"checkTimeout": 10,
@@ -74,22 +66,6 @@
 									"containerPort": 9200
 								}
 							]
-						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "HTTP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": "/",
-					"endpoint": [
-						{
-							"containerPort": 9200
 						}
 					]
 				}
@@ -151,17 +127,6 @@
 							"path": ""
 						}
 					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
 				}
 			],
 			"containerType": [
