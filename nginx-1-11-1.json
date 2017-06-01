@@ -37,7 +37,7 @@
 							"hostPort": 80,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "HTTP",
 									"startDelay": 5,

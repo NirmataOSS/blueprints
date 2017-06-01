@@ -43,7 +43,7 @@
 							"hostPort": 2181,
 							"name": "ZOOKEEPER_PORT",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 5,
@@ -69,29 +69,26 @@
 							"name": "LEADER_ELECTION",
 							"enableServiceNetworking": false
 						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 5,
-					"checkInterval": 5,
-					"checkTimeout": 30,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": "",
-					"endpoint": [
+					],
+					"healthCheck": [
 						{
-							"containerPort": 2181,
 							"type": "TCP",
-							"hostPort": 2181,
-							"name": "ZOOKEEPER_PORT",
-							"enableServiceNetworking": false
+							"startDelay": 5,
+							"checkInterval": 5,
+							"checkTimeout": 30,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "",
+							"endpoint": [
+								{
+									"containerPort": 2181
+								}
+							]
 						}
 					]
 				}
 			],
+			
 			"serviceScalingRules": [
 				{
 					"desiredCount": 3,

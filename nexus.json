@@ -13,7 +13,7 @@
 					"runCommand": "",
 					"hostname": "",
 					"volumeMappings": [
-						"nexus-data:/nexus-data"
+						"/nexus-data:/nexus-data"
 					],
 					"isPrivileged": false,
 					"dns": [],
@@ -53,17 +53,6 @@
 							"path": ""
 						}
 					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
 				}
 			],
 			"containerType": [

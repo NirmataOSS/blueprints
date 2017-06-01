@@ -23,7 +23,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -84,7 +84,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -166,7 +166,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -228,7 +228,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -285,7 +285,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -347,7 +347,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -408,7 +408,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -470,7 +470,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -532,7 +532,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -594,7 +594,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -656,7 +656,7 @@
 							"hostPort": 0,
 							"name": "HTTP",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,

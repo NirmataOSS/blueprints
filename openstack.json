@@ -27,7 +27,7 @@
 							"hostPort": 3306,
 							"name": "MYSQL_PORT",
 							"enableServiceNetworking": false,
-							"healthChecks": [
+							"healthCheck": [
 								{
 									"type": "TCP",
 									"startDelay": 10,
@@ -39,29 +39,26 @@
 								}
 							]
 						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": "",
-					"endpoint": [
+					],
+					"healthCheck": [
 						{
-							"containerPort": 3306,
 							"type": "TCP",
-							"hostPort": 3306,
-							"name": "MYSQL_PORT",
-							"enableServiceNetworking": false
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "",
+							"endpoint": [
+								{
+									"containerPort": 3306
+								}
+							]
 						}
 					]
 				}
 			],
+			
 			"requiredBy": [
 				{
 					"name": "keystone"
@@ -109,20 +106,21 @@
 							"name": "RABBITMQ_DIST_PORT",
 							"enableServiceNetworking": false
 						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
 					]
 				}
 			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
-				}
-			],
+			
 			"requiredBy": [
 				{
 					"name": "keystone"
@@ -175,18 +173,18 @@
 							"name": "KEYSTONE_API_PORT",
 							"enableServiceNetworking": false
 						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
 					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
 				}
 			],
 			"dependsOn": [
@@ -240,18 +238,18 @@
 							"name": "GLANCE_PORT",
 							"enableServiceNetworking": false
 						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
 					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
 				}
 			],
 			"dependsOn": [
@@ -309,18 +307,18 @@
 							"name": "NOVA_API_PORT",
 							"enableServiceNetworking": false
 						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
 					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
 				}
 			],
 			"dependsOn": [
@@ -376,20 +374,21 @@
 							"name": "ADMIN",
 							"enableServiceNetworking": false
 						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
 					]
 				}
 			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
-				}
-			],
+			
 			"dependsOn": [
 				{
 					"name": "nova"

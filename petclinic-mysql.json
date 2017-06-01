@@ -33,18 +33,18 @@
 							"name": "HTTP",
 							"enableServiceNetworking": false
 						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
 					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "NONE",
-					"startDelay": 10,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": ""
 				}
 			],
 			"containerType": [
@@ -100,25 +100,26 @@
 								}
 							]
 						}
-					]
-				}
-			],
-			"healthCheck": [
-				{
-					"type": "TCP",
-					"startDelay": 15,
-					"checkInterval": 10,
-					"checkTimeout": 10,
-					"failureThreshold": 3,
-					"successThreshold": 1,
-					"path": "",
-					"endpoint": [
+					],
+					"healthCheck": [
 						{
-							"containerPort": 3306
+							"type": "TCP",
+							"startDelay": 15,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "",
+							"endpoint": [
+								{
+									"containerPort": 3306
+								}
+							]
 						}
 					]
 				}
 			],
+			
 			"containerType": [
 				{
 					"name": "nolimits"
