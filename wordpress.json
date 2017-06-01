@@ -1,46 +1,192 @@
 {
-	"name": "Wordpress",
+	"name": "wordpress",
 	"description": "Wordpress demo application based on a trusted build",
+	"defaultRouteAction": "allow",
 	"services": [
 		{
-			"name": "docker-wordpress",
-			"imageRepository": "jbfink/docker-wordpress",
+			"name": "wordpress",
+			"imageRepository": "wordpress",
 			"tag": "latest",
+			"cluster": false,
 			"serviceSpec": [
 				{
 					"runCommand": "",
-					"properties": {},
 					"hostname": "",
-					"volumeMappings": [],
+					"volumeMappings": [
+						"/wordpress/html:/var/www/html"
+					],
 					"isPrivileged": false,
-					"volumesFrom": [],
 					"dns": [],
 					"networkMode": "bridge",
 					"enableServiceNetworking": false,
+					"properties": {},
+					"loggingOptions": {},
+					"volumesFrom": [],
 					"portMappings": [
 						{
 							"containerPort": 80,
 							"type": "HTTP",
 							"hostPort": 8080,
-							"name": "HTTP"
+							"name": "HTTP",
+							"enableServiceNetworking": false,
+							"healthCheck": [
+								{
+									"type": "NONE",
+									"startDelay": 10,
+									"checkInterval": 10,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "",
+							"endpoint": [
+								{
+									"containerPort": 80
+								}
+							]
 						}
 					]
 				}
 			],
-			"gatewayRoutes": [],
-			"containerType": [],
-			"dependsOn": [],
-			"requiredBy": [],
-			"serviceInstances": [],
-			"desiredServices": [],
-			"serviceAffinityRules": [],
-			"serviceScalingRules": [],
-			"gatewayApplication": []
+			"containerType": [
+				{
+					"name": "No Limit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "mysql"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
+		},
+		{
+			"name": "mysql",
+			"imageRepository": "mysql",
+			"tag": "latest",
+			"cluster": false,
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/wordpress/database:/var/lib/mysql"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"portMappings": [
+						{
+							"containerPort": 3306,
+							"type": "TCP",
+							"hostPort": 3306,
+							"name": "TCP",
+							"enableServiceNetworking": false
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "No Limit"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "wordpress"
+				}
+			],
+			"serviceAffinityRules": [
+				{
+					"affinity": "sameHost"
+				}
+			]
 		}
 	],
-	"webHooks": [],
-	"serviceAffinityRules": [],
-	"serviceScalingRules": [],
-	"environments": [],
-	"gateway": []
+	"serviceAffinityRules": [
+		{
+			"affinity": "sameHost",
+			"services": [
+				{
+					"name": "wordpress"
+				},
+				{
+					"name": "mysql"
+				}
+			]
+		}
+	],
+	"environmentVariables": [
+		{
+			"key": "WORDPRESS_DB_PASSWORD",
+			"value": "password",
+			"services": [
+				"wordpress"
+			]
+		},
+		{
+			"key": "WORDPRESS_DB_HOST",
+			"value": "{mysql.NIRMATA_SERVICE_ADDRESS}:3306",
+			"services": [
+				"wordpress"
+			]
+		},
+		{
+			"key": "WORDPRESS_DB_USER",
+			"value": "root",
+			"services": [
+				"wordpress"
+			]
+		},
+		{
+			"key": "MYSQL_ROOT_PASSWORD",
+			"value": "password",
+			"services": [
+				"mysql"
+			]
+		}
+	],
+	"routingPolicy": [
+		{
+			"defaultAction": "allow",
+			"target": "wordpress"
+		}
+	]
 }
