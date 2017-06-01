@@ -20,9 +20,16 @@
   },
   {
     "name": "Wordpress",
-    "description": "Wordpress publishing application. Requires 1 container.",
+    "description": "Wordpress publishing application. Requires 2 containers.",
     "filename": "wordpress.json",
     "application": "Wordpress",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/wordpress.png"
+  },
+  {
+    "name": "Wordpress Multisite",
+    "description": "Wordpress publishing application. Requires 2 containers.",
+    "filename": "wordpress-multisite.json",
+    "application": "Wordpress Multisite",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/wordpress.png"
   },
   {
