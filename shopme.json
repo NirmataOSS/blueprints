@@ -701,70 +701,80 @@
 					"route": "/orders",
 					"toService": "orders",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/customer",
 					"toService": "customer",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/catalog",
 					"toService": "catalog",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/deals",
 					"toService": "deals",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/loyalty",
 					"toService": "loyalty",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/payment",
 					"toService": "payment",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/ratings",
 					"toService": "ratings",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/recommendations",
 					"toService": "recommendations",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/wishlist",
 					"toService": "wishlist",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				},
 				{
 					"type": "urlRoute",
 					"route": "/shopui",
 					"toService": "webclient",
 					"toPort": 80,
-					"toPortType": "HTTP"
+					"toPortType": "HTTP",
+					"targetUrl": "/service"
 				}
 			]
 		}
