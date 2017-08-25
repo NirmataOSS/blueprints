@@ -12,8 +12,12 @@
 				{
 					"runCommand": "",
 					"hostname": "",
-					"volumeMappings": [
-						"/data/redis-master:/data"
+					"volumeSpecs": [
+						{
+							"type":"hostDirectory",
+							"hostPath":"/data/redis-master",
+							"containerMountPoint":"/data"
+						}
 					],
 					"isPrivileged": false,
 					"dns": [],
