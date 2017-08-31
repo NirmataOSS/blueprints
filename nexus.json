@@ -15,6 +15,18 @@
 					"volumeMappings": [
 						"/nexus-data:/nexus-data"
 					],
+					
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/nexus-data",
+							"containerMountPoint": "/nexus-data",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
