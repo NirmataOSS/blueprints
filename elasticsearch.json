@@ -15,6 +15,18 @@
 					"volumeMappings": [
 						"/elasticsearch:/es"
 					],
+					
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/elasticsearch",
+							"containerMountPoint": "/es",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
