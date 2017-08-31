@@ -16,6 +16,33 @@
 						"/opt/docker-registry/certs:/certs",
 						"/opt/docker-registry/data:/var/lib/registry"
 					],
+					
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/opt/docker-registry/auth",
+							"containerMountPoint": "/auth",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"hostPath": "/opt/docker-registry/certs",
+							"containerMountPoint": "/certs",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"hostPath": "/opt/docker-registry/data",
+							"containerMountPoint": "/var/lib/registry",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
