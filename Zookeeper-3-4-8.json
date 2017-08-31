@@ -16,6 +16,22 @@
 						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/data:/tmp/zookeeper",
 						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/log:/var/log/supervisor"
 					],
+					"volumeSpecs": [
+						{
+							"hostPath": "/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/data",
+							"containerMountPoint": "/tmp/zookeeper",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"hostPath": "/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/zookeeper/node-{NIRMATA_CLUSTER_NODE_ID}/log",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
