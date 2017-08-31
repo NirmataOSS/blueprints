@@ -83,6 +83,17 @@
 					"volumeMappings": [
 						"/var/log/openstack/rabbitmq:/var/log/supervisor"
 					],
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/var/log/openstack/rabbitmq",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
@@ -144,7 +155,18 @@
 					"hostname": "keystone",
 					"volumeMappings": [
 						"/var/log/openstack/keystone:/var/log/supervisor"
+					],				
+
+					"volumeSpecs": [
+						{
+							"hostPath": "/var/log/openstack/keystone",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
 					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
@@ -215,7 +237,18 @@
 					"hostname": "glance",
 					"volumeMappings": [
 						"/var/log/openstack/glance:/var/log/supervisor"
+					],					
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/var/log/openstack/glance",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
 					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
@@ -275,7 +308,18 @@
 					"hostname": "nova",
 					"volumeMappings": [
 						"/var/log/openstack/nova:/var/log/supervisor"
+					],										
+
+					"volumeSpecs": [
+						{
+							"hostPath": "/var/log/openstack/nova",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
 					],
+					
 					"isPrivileged": true,
 					"dns": [],
 					"networkMode": "bridge",
@@ -351,6 +395,26 @@
 						"/var/log/openstack/horizon:/var/log/supervisor",
 						"/var/log/openstack/apache2:/var/log/apache2"
 					],
+					
+					
+
+					"volumeSpecs": [
+						{
+							"hostPath": "/var/log/openstack/horizon",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"hostPath": "/var/log/openstack/horizon",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
