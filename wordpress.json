@@ -15,6 +15,16 @@
 					"volumeMappings": [
 						"/wordpress/html:/var/www/html"
 					],
+					
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/var/www/html",
+							"hostPath": "/wordpress/html",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
