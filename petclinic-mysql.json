@@ -70,6 +70,18 @@
 					"volumeMappings": [
 						"/data/petclinic/mysql:/var/lib/mysql"
 					],
+					
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/data/petclinic/mysql",
+							"containerMountPoint": "/var/lib/mysql",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
