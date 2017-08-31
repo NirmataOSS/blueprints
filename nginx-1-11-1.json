@@ -17,7 +17,40 @@
 						"/mnt/nirmata/nginx/log:/var/log/nginx",
 						"/mnt/nirmata/nginx/ssl/certs:/etc/nginx/ssl/certs",
 						"/mnt/nirmata/nginx/ssl/private:/etc/nginx/ssl/private"
+					],					
+					
+
+					"volumeSpecs": [
+						{
+							"hostPath": "/mnt/nirmata/nginx/sites-enabled",
+							"containerMountPoint": "/etc/nginx/sites-enabled",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/mnt/nirmata/nginx/log",
+							"containerMountPoint": "/var/log/nginx",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/mnt/nirmata/nginx/ssl/certs",
+							"containerMountPoint": "/etc/nginx/ssl/certs",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/mnt/nirmata/nginx/ssl/private",
+							"containerMountPoint": "/etc/nginx/ssl/private",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
 					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
