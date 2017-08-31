@@ -15,6 +15,17 @@
 					"volumeMappings": [
 						"/data/mysql:/var/lib/mysql"
 					],
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/data/mysql",
+							"containerMountPoint": "/var/lib/mysql",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
