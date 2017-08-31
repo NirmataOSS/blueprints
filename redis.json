@@ -15,6 +15,16 @@
 					"volumeMappings": [
 						"/data/redis-master:/data"
 					],
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/data/redis-master",
+							"containerMountPoint": "/data",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
