@@ -216,6 +216,17 @@
 					"volumeMappings": [
 						"/usr/share/nirmata/ssl:/usr/share/nirmata/ssl"
 					],
+									
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/usr/share/nirmata/ssl",
+							"hostPath": "/usr/share/nirmata/ssl",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"dns": [],
 					"networkMode": "bridge",
 					"enableServiceNetworking": true,
