@@ -16,6 +16,24 @@
 						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/supervisor:/var/log/supervisor",
 						"/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/data:/data/db"
 					],
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/supervisor",
+							"containerMountPoint": "/var/log/supervisor",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"hostPath": "/mnt/nirmata/{NIRMATA_ENVIRONMENT_NAME}/mongodb/data",
+							"containerMountPoint": "/data/db",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
