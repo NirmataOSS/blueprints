@@ -148,6 +148,54 @@
 						"/lib/x86_64-linux-gnu/libsystemd-journal.so.0:/lib/x86_64-linux-gnu/libsystemd-journal.so.0",
 						"/usr/lib/x86_64-linux-gnu/libapparmor.so.1:/usr/lib/x86_64-linux-gnu/libapparmor.so.1"
 					],
+					
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/cgroup",
+							"containerMountPoint": "/cgroup",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/var/run/docker.sock",
+							"containerMountPoint": "/var/run/docker.sock",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/usr/bin/docker",
+							"containerMountPoint": "/usr/local/bin/docker",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/sys",
+							"containerMountPoint": "/sys",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/lib/x86_64-linux-gnu/libsystemd-journal.so.0",
+							"containerMountPoint": "/lib/x86_64-linux-gnu/libsystemd-journal.so.0",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+												{
+							"hostPath": "/usr/lib/x86_64-linux-gnu/libapparmor.so.1",
+							"containerMountPoint": "/usr/lib/x86_64-linux-gnu/libapparmor.so.1",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
+					
 					"isPrivileged": true,
 					"dns": [],
 					"networkMode": "host",
