@@ -14,6 +14,17 @@
 					"volumeMappings": [
 						"/var/log/opendaylight:/opt/opendaylight/data/log"
 					],
+					
+					"volumeSpecs": [
+						{
+							"hostPath": "/var/log/opendaylight",
+							"containerMountPoint": "/opt/opendaylight/data/log",	
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					],
+					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "host",
