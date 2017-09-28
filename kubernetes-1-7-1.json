@@ -1,0 +1,711 @@
+{
+	"name": "kubernetes",
+	"description": "",
+	"defaultRouteAction": "allow",
+	"orchestrator": "nirmata",
+	"services": [
+		{
+			"name": "etcd",
+			"imageRepository": "gcr.io/google_containers/etcd",
+			"tag": "2.2.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "/usr/local/bin/etcd --bind-addr=0.0.0.0:4001 --data-dir=/var/etcd/data",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "apiserver"
+				}
+			]
+		},
+		{
+			"name": "apiserver",
+			"imageRepository": "gcr.io/google_containers/hyperkube",
+			"tag": "v1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "/hyperkube apiserver --service-cluster-ip-range={NIRMATA_SERVICE_CLUSTER_IP_RANGE} --insecure-bind-address={NIRMATA_HOST_PRIVATE_ADDRESS} --etcd-servers=http://127.0.0.1:4001 --client-ca-file=/etc/kubernetes/ssl/ca.crt --tls-cert-file=/etc/kubernetes/ssl/server.crt --tls-private-key-file=/etc/kubernetes/ssl/server.key --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,PersistentVolumeLabel,DefaultStorageClass,ResourceQuota,DefaultTolerationSeconds --storage-backend=etcd2 --allow-privileged=true --service-account-key-file=/etc/kubernetes/ssl/server.key --v=6",
+					"hostname": "",
+					"volumeMappings": [
+						"/opt/nirmata/ssl:/etc/kubernetes/ssl"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"NIRMATA_SERVICE_CLUSTER_IP_RANGE": "172.16.0.0/24"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP",
+							"enableServiceNetworking": false,
+							"healthCheck": [
+								{
+									"type": "NONE",
+									"startDelay": 15,
+									"checkInterval": 15,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						},
+						{
+							"containerPort": 6443,
+							"type": "HTTPS",
+							"hostPort": 6443,
+							"name": "HTTPS",
+							"enableServiceNetworking": false
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 15,
+							"checkInterval": 15,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "/healthz",
+							"endpoint": [
+								{
+									"containerPort": 8080
+								}
+							]
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/etc/kubernetes/ssl",
+							"hostPath": "/opt/nirmata/ssl",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "etcd"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "scheduler"
+				},
+				{
+					"name": "proxy"
+				},
+				{
+					"name": "kubelet"
+				},
+				{
+					"name": "controller"
+				},
+				{
+					"name": "kubectl"
+				},
+				{
+					"name": "nirmata-kube-installer"
+				}
+			]
+		},
+		{
+			"name": "controller",
+			"imageRepository": "gcr.io/google_containers/hyperkube",
+			"tag": "v1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "/hyperkube controller-manager --master={apiserver.NIRMATA_SERVICE_ADDRESS}:8080 --service-account-private-key-file=/etc/kubernetes/ssl/server.key --root-ca-file=/etc/kubernetes/ssl/ca.crt --allocate-node-cidrs=true --cluster-cidr={NIRMATA_CLUSTER_CIDR} --cluster-name={NIRMATA_ENVIRONMENT_NAME}",
+					"hostname": "",
+					"volumeMappings": [
+						"/opt/nirmata/ssl:/etc/kubernetes/ssl"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"NIRMATA_CLUSTER_CIDR": "192.168.0.0/16"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"portMappings": [
+						{
+							"containerPort": 10252,
+							"type": "HTTP",
+							"hostPort": 10252,
+							"name": "HTTP",
+							"enableServiceNetworking": false,
+							"healthCheck": [
+								{
+									"type": "NONE",
+									"startDelay": 15,
+									"checkInterval": 15,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 15,
+							"checkInterval": 15,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "/healthz",
+							"endpoint": [
+								{
+									"containerPort": 10252
+								}
+							]
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/etc/kubernetes/ssl",
+							"hostPath": "/opt/nirmata/ssl",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "apiserver"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "kubectl"
+				},
+				{
+					"name": "nirmata-kube-installer"
+				}
+			]
+		},
+		{
+			"name": "scheduler",
+			"imageRepository": "gcr.io/google_containers/hyperkube",
+			"tag": "v1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "/hyperkube scheduler --master={apiserver.NIRMATA_SERVICE_ADDRESS}:8080",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": true,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"portMappings": [
+						{
+							"containerPort": 10251,
+							"type": "HTTP",
+							"hostPort": 10251,
+							"name": "HTTP",
+							"enableServiceNetworking": false,
+							"healthCheck": [
+								{
+									"type": "NONE",
+									"startDelay": 15,
+									"checkInterval": 15,
+									"checkTimeout": 10,
+									"failureThreshold": 3,
+									"successThreshold": 1
+								}
+							]
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 15,
+							"checkInterval": 15,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": "/healthz",
+							"endpoint": [
+								{
+									"containerPort": 10251
+								}
+							]
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "apiserver"
+				}
+			]
+		},
+		{
+			"name": "kubelet",
+			"imageRepository": "gcr.io/google_containers/hyperkube",
+			"tag": "v1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "/hyperkube kubelet --api-servers=http://{apiserver.NIRMATA_SERVICE_ADDRESS}:8080 --container-runtime=docker --allow-privileged=true --pod-manifest-path=/etc/kubernetes/manifests --network-plugin=cni --cni-conf-dir=/etc/cni/net.d --cni-bin-dir=/opt/cni/bin --cluster-dns={NIRMATA_CLUSTER_DNS} --cluster-domain=cluster.local --v=6 ",
+					"hostname": "",
+					"volumeMappings": [
+						"/:/rootfs:ro",
+						"/sys:/sys:ro",
+						"/var/run:/var/run:rw",
+						"/var/lib/docker/:/var/lib/docker:rw",
+						"/var/lib/kubelet/:/var/lib/kubelet:rw,shared",
+						"/var/run/docker.sock:/var/run/docker.sock"
+					],
+					"isPrivileged": true,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"NIRMATA_CLUSTER_DNS": "172.16.0.10"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "{\"PidMode\": \"host\"}",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/rootfs:ro",
+							"hostPath": "/",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/sys:ro",
+							"hostPath": "/sys",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/var/run:rw",
+							"hostPath": "/var/run",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/var/lib/docker:rw",
+							"hostPath": "/var/lib/docker/",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/var/lib/kubelet:shared",
+							"hostPath": "/var/lib/kubelet/",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/var/run/docker.sock",
+							"hostPath": "/var/run/docker.sock",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/etc/kubernetes/manifests",
+							"hostPath": "/opt/nirmata/manifests",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/opt/cni:ro",
+							"hostPath": "/opt/cni/",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/etc/cni:ro",
+							"hostPath": "/etc/cni",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "apiserver"
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "kubectl"
+				},
+				{
+					"name": "nirmata-kube-installer"
+				},
+				{
+					"name": "proxy"
+				}
+			]
+		},
+		{
+			"name": "proxy",
+			"imageRepository": "gcr.io/google_containers/hyperkube",
+			"tag": "v1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "/hyperkube proxy --master=http://{apiserver.NIRMATA_SERVICE_ADDRESS}:8080",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": true,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "apiserver"
+				},
+				{
+					"name": "kubelet"
+				}
+			]
+		},
+		{
+			"name": "kubectl",
+			"imageRepository": "nirmata/kubectl",
+			"tag": "1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/opt/nirmata/ssl:/etc/kubernetes/ssl"
+					],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"SERVER_PORT": "6443",
+						"API_SERVER": "{apiserver.NIRMATA_SERVICE_ADDRESS}"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/etc/kubernetes/ssl",
+							"hostPath": "/opt/nirmata/ssl",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "apiserver"
+				},
+				{
+					"name": "controller"
+				},
+				{
+					"name": "kubelet"
+				}
+			]
+		},
+		{
+			"name": "nirmata-kube-installer",
+			"imageRepository": "nirmata/nirmata-kube-installer",
+			"tag": "1.7.1",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [],
+					"isPrivileged": false,
+					"dns": [],
+					"networkMode": "host",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {
+						"SERVER_PORT": "6443",
+						"TUNNEL_SERVER_URL": "wss://alpha.nirmata.io/tunnels",
+						"API_SERVER": "{apiserver.NIRMATA_SERVICE_ADDRESS}"
+					},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"advancedHostConfig": "",
+					"advancedNetworkConfig": "",
+					"advancedConfig": "",
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/etc/kubernetes/addons",
+							"hostPath": "/opt/nirmata/addons",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						},
+						{
+							"containerMountPoint": "/etc/kubernetes/ssl",
+							"hostPath": "/opt/nirmata/ssl",
+							"type": "hostDirectory",
+							"volumeName": "",
+							"size": 16
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "apiserver"
+				},
+				{
+					"name": "controller"
+				},
+				{
+					"name": "kubelet"
+				}
+			]
+		}
+	],
+	"environmentVariables": [
+		{
+			"key": "API_SERVER",
+			"value": "{apiserver.NIRMATA_SERVICE_ADDRESS}",
+			"services": [
+				"kubectl",
+				"nirmata-kube-installer"
+			]
+		},
+		{
+			"key": "SERVER_PORT",
+			"value": "6443",
+			"services": [
+				"kubectl",
+				"nirmata-kube-installer"
+			]
+		},
+		{
+			"key": "TUNNEL_SERVER_URL",
+			"value": "wss://alpha.nirmata.io/tunnels",
+			"services": [
+				"nirmata-kube-installer"
+			]
+		},
+		{
+			"key": "NIRMATA_CLUSTER_DNS",
+			"value": "172.16.0.10",
+			"services": [
+				"kubelet"
+			]
+		},
+		{
+			"key": "NIRMATA_SERVICE_CLUSTER_IP_RANGE",
+			"value": "172.16.0.0/24",
+			"services": [
+				"apiserver"
+			]
+		},
+		{
+			"key": "NIRMATA_CLUSTER_CIDR",
+			"value": "192.168.0.0/16",
+			"services": [
+				"controller"
+			]
+		}
+	],
+	"routingPolicy": [
+		{
+			"defaultAction": "allow",
+			"target": "kubernetes"
+		}
+	]
+}

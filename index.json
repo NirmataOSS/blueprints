@@ -1,5 +1,13 @@
 [
   {
+    "name": “Kubernetes”,
+    "version": “1.7.1”,
+    "description": “Blueprint to deploy Kubernetes cluster“,
+    "filename": “kubernetes-1-7-1.json",
+    "application": “kubernetes”,
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/kubernetes/kubernetes.png"
+  },
+  {
     "name": "Hello World",
     "description": "Simple hello world application. Requires 1 container.",
     "filename": "hello-world.json",
