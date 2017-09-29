@@ -43,7 +43,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"requiredBy": [
@@ -135,7 +135,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
@@ -240,7 +240,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
@@ -320,7 +320,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
@@ -442,7 +442,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
@@ -501,7 +501,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
@@ -566,7 +566,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
@@ -640,7 +640,7 @@
 			],
 			"containerType": [
 				{
-					"name": "nolimit"
+					"name": "kubernetes-service"
 				}
 			],
 			"dependsOn": [
