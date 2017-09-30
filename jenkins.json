@@ -1,0 +1,84 @@
+{
+	"name": "jenkins",
+	"description": "Jenkins CI",
+	"defaultRouteAction": "allow",
+	"orchestrator": "nirmata",
+	"services": [
+		{
+			"name": "jenkins",
+			"imageRepository": "jenkins/jenkins",
+			"tag": "lts",
+			"type": "stateless",
+			"serviceSpec": [
+				{
+					"runCommand": "",
+					"hostname": "",
+					"volumeMappings": [
+						"/mnt/jenkins-configuration:/var/jenkins_home",
+						"/mnt:/mnt1",
+						"/var/run/docker.sock:/var/run/docker.sock",
+						"/mnt/gradle:/root/.gradle"
+					],
+					"isPrivileged": true,
+					"dns": [],
+					"networkMode": "bridge",
+					"enableServiceNetworking": false,
+					"user": "",
+					"properties": {},
+					"loggingType": "DEFAULT",
+					"loggingOptions": {
+						"": ""
+					},
+					"volumesFrom": [],
+					"portMappings": [
+						{
+							"containerPort": 8080,
+							"type": "HTTP",
+							"hostPort": 8080,
+							"name": "HTTP",
+							"enableServiceNetworking": false
+						},
+						{
+							"containerPort": 50000,
+							"type": "TCP",
+							"hostPort": 50000,
+							"name": "TCP",
+							"enableServiceNetworking": true
+						}
+					],
+					"healthCheck": [
+						{
+							"type": "NONE",
+							"startDelay": 10,
+							"checkInterval": 10,
+							"checkTimeout": 10,
+							"failureThreshold": 3,
+							"successThreshold": 1,
+							"path": ""
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/var/jenkins_home",
+							"hostPath": "",
+							"type": "namedVolume",
+							"volumeName": "jenkins-home",
+							"size": 16
+						}
+					]
+				}
+			],
+			"containerType": [
+				{
+					"name": "nolimit"
+				}
+			]
+		}
+	],
+	"routingPolicy": [
+		{
+			"defaultAction": "allow",
+			"target": "jenkins"
+		}
+	]
+}

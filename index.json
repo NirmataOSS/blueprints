@@ -188,6 +188,14 @@
     "filename": "nexus.json",
     "application": "Sonatype Nexus",
     "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/nexus/nexus.png"
+  },
+  {
+    "name": “Jenkins”,
+    "version": “LTS”,
+    "description": "Blueprint for Jenkins LTS release”,
+    "filename": “jenkins.json",
+    "application": “Jenkins”,
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/master/jenkins.png"
   }
 
 ]
