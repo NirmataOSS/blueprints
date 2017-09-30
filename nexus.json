@@ -2,31 +2,19 @@
 	"name": "Nexus",
 	"description": "Sonatype Nexus Repository Manager 3",
 	"defaultRouteAction": "allow",
+	"orchestrator": "nirmata",
 	"services": [
 		{
 			"name": "nexus3",
 			"imageRepository": "sonatype/nexus3",
 			"tag": "latest",
-			"cluster": false,
+			"type": "stateless",
 			"serviceSpec": [
 				{
 					"runCommand": "",
 					"hostname": "",
 					"volumeMappings": [
-						"/nexus-data:/nexus-data"
 					],
-					
-					
-					"volumeSpecs": [
-						{
-							"hostPath": "/nexus-data",
-							"containerMountPoint": "/nexus-data",	
-							"type": "hostDirectory",
-							"volumeName": "",
-							"size": 16
-						}
-					],
-					
 					"isPrivileged": false,
 					"dns": [],
 					"networkMode": "bridge",
@@ -63,6 +51,15 @@
 							"failureThreshold": 3,
 							"successThreshold": 1,
 							"path": ""
+						}
+					],
+					"volumeSpecs": [
+						{
+							"containerMountPoint": "/nexus-data",
+							"hostPath": "",
+							"type": "namedVolume",
+							"volumeName": "nexus-data",
+							"size": 16
 						}
 					]
 				}
