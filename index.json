@@ -20,6 +20,12 @@
     "application": "shopme"
   },
   {
+    "name": "ShopmeK8s",
+    "description": "Simple microservices Kubernetes application. Requires 6 containers.",
+    "filename": "shopmek8s.json",
+    "application": "shopmek8s"
+  },
+  {
     "name": "Neflix OSS",
     "description": "Collection of core Netflix OSS components for getting started with development of a microservices application. Requires 5 containers.",
     "filename": "netflix-oss.json",
