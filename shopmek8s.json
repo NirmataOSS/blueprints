@@ -1,0 +1,472 @@
+{
+	"name": "shopmek8s",
+	"description": "",
+	"defaultRouteAction": "allow",
+	"orchestrator": "kubernetes",
+	"gatewayPolicy": [
+		{
+			"rules": [
+				{
+					"type": "urlRoute",
+					"route": "/catalog",
+					"toService": "catalog",
+					"toPort": 80,
+					"toPortType": "HTTP",
+					"targetUrl": "/service",
+					"stickySessions": false
+				},
+				{
+					"type": "urlRoute",
+					"route": "/orders",
+					"toService": "catalog",
+					"toPort": 80,
+					"toPortType": "HTTP",
+					"targetUrl": "/service",
+					"stickySessions": false
+				},
+				{
+					"type": "urlRoute",
+					"route": "/payment",
+					"toService": "catalog",
+					"toPort": 80,
+					"toPortType": "HTTP",
+					"targetUrl": "/service",
+					"stickySessions": false
+				},
+				{
+					"type": "urlRoute",
+					"route": "/customer",
+					"toService": "catalog",
+					"toPort": 80,
+					"toPortType": "HTTP",
+					"targetUrl": "/service",
+					"stickySessions": false
+				}
+			]
+		}
+	],
+	"routingPolicy": [
+		{
+			"defaultAction": "deny",
+			"target": "shopmek8s",
+			"k8sRules": [
+				{
+					"fromService": "nirmata-gateway",
+					"fromVersion": "nirmata-gateway",
+					"action": "allow",
+					"port": [
+						{
+							"containerPort": 80
+						}
+					]
+				},
+				{
+					"fromService": "nirmata-gateway",
+					"action": "allow",
+					"port": [
+						{
+							"containerPort": 80
+						}
+					]
+				},
+				{
+					"fromService": "nirmata-gateway",
+					"action": "allow",
+					"port": [
+						{
+							"containerPort": 80
+						}
+					]
+				},
+				{
+					"fromService": "nirmata-gateway",
+					"action": "allow",
+					"port": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			]
+		}
+	],
+	"k8sServices": [
+		{
+			"name": "catalog",
+			"type": "stateless",
+			"serviceType": "ClusterIP",
+			"k8sDeployment": [
+				{
+					"replicas": 1,
+					"minReadySeconds": 0,
+					"progressDeadlineSeconds": 0,
+					"revisionHistoryLimit": 0,
+					"rollbackTo": 0,
+					"pod": [
+						{
+							"restartPolicy": "Always",
+							"containers": [
+								{
+									"args": [],
+									"command": [],
+									"imageRepository": "nirmata/catalog",
+									"tag": "latest",
+									"ports": [
+										{
+											"containerPort": 80,
+											"type": "HTTP",
+											"hostPort": 0,
+											"name": "catalog",
+											"enableServiceNetworking": true,
+											"isK8sServicePort": true,
+											"k8sServicePort": [
+												{
+													"nodePort": 0
+												}
+											],
+											"k8sNetworkPolicy": [
+												{
+													"fromService": "nirmata-gateway"
+												}
+											]
+										}
+									],
+									"containerType": [
+										{
+											"name": "No Limit"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"servicePorts": [
+				{
+					"nodePort": 0,
+					"containerPorts": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "customer",
+			"type": "stateless",
+			"serviceType": "ClusterIP",
+			"k8sDeployment": [
+				{
+					"replicas": 1,
+					"minReadySeconds": 0,
+					"progressDeadlineSeconds": 0,
+					"revisionHistoryLimit": 0,
+					"rollbackTo": 0,
+					"pod": [
+						{
+							"restartPolicy": "Always",
+							"containers": [
+								{
+									"args": [],
+									"command": [],
+									"imageRepository": "nirmata/customer",
+									"tag": "latest",
+									"ports": [
+										{
+											"containerPort": 80,
+											"type": "HTTP",
+											"hostPort": 0,
+											"name": "customer",
+											"enableServiceNetworking": true,
+											"isK8sServicePort": true,
+											"k8sServicePort": [
+												{
+													"nodePort": 0
+												}
+											],
+											"k8sNetworkPolicy": [
+												{
+													"fromService": "nirmata-gateway"
+												}
+											]
+										}
+									],
+									"containerType": [
+										{
+											"name": "No Limit"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"servicePorts": [
+				{
+					"nodePort": 0,
+					"containerPorts": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "default-http-backend",
+			"type": "stateless",
+			"serviceType": "ClusterIP",
+			"k8sDeployment": [
+				{
+					"replicas": 1,
+					"minReadySeconds": 0,
+					"progressDeadlineSeconds": 0,
+					"revisionHistoryLimit": 0,
+					"rollbackTo": 0,
+					"pod": [
+						{
+							"restartPolicy": "Always",
+							"containers": [
+								{
+									"args": [],
+									"command": [],
+									"imageRepository": "gcr.io/google_containers/defaultbackend",
+									"tag": "1.0",
+									"ports": [
+										{
+											"containerPort": 8080,
+											"type": "HTTP",
+											"hostPort": 80,
+											"name": "backend",
+											"enableServiceNetworking": true,
+											"isK8sServicePort": true,
+											"k8sServicePort": [
+												{
+													"nodePort": 0
+												}
+											]
+										}
+									],
+									"containerType": [
+										{
+											"name": "No Limit"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"servicePorts": [
+				{
+					"nodePort": 0,
+					"containerPorts": [
+						{
+							"containerPort": 8080
+						}
+					]
+				}
+			],
+			"requiredBy": [
+				{
+					"name": "nirmata-gateway"
+				}
+			]
+		},
+		{
+			"name": "nirmata-gateway",
+			"type": "stateless",
+			"serviceType": "ClusterIP",
+			"k8sDeployment": [
+				{
+					"replicas": 1,
+					"minReadySeconds": 0,
+					"progressDeadlineSeconds": 0,
+					"revisionHistoryLimit": 0,
+					"rollbackTo": 0,
+					"pod": [
+						{
+							"restartPolicy": "Always",
+							"containers": [
+								{
+									"args": [],
+									"command": [],
+									"imageRepository": "nirmata/nirmata-gateway",
+									"tag": "k8sdemo",
+									"ports": [
+										{
+											"containerPort": 80,
+											"type": "HTTP",
+											"hostPort": 8888,
+											"name": "gateway",
+											"enableServiceNetworking": true,
+											"isK8sServicePort": true,
+											"k8sServicePort": [
+												{
+													"nodePort": 0
+												}
+											]
+										}
+									],
+									"containerType": [
+										{
+											"name": "No Limit"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"servicePorts": [
+				{
+					"nodePort": 0,
+					"containerPorts": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			],
+			"dependsOn": [
+				{
+					"name": "default-http-backend"
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"type": "stateless",
+			"serviceType": "ClusterIP",
+			"k8sDeployment": [
+				{
+					"replicas": 1,
+					"minReadySeconds": 0,
+					"progressDeadlineSeconds": 0,
+					"revisionHistoryLimit": 0,
+					"rollbackTo": 0,
+					"pod": [
+						{
+							"restartPolicy": "Always",
+							"containers": [
+								{
+									"args": [],
+									"command": [],
+									"imageRepository": "nirmata/orders",
+									"tag": "latest",
+									"ports": [
+										{
+											"containerPort": 80,
+											"type": "HTTP",
+											"hostPort": 0,
+											"name": "orders",
+											"enableServiceNetworking": true,
+											"isK8sServicePort": true,
+											"k8sServicePort": [
+												{
+													"nodePort": 0
+												}
+											],
+											"k8sNetworkPolicy": [
+												{
+													"fromService": "nirmata-gateway"
+												}
+											]
+										}
+									],
+									"containerType": [
+										{
+											"name": "No Limit"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"servicePorts": [
+				{
+					"nodePort": 0,
+					"containerPorts": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"type": "stateless",
+			"serviceType": "ClusterIP",
+			"k8sDeployment": [
+				{
+					"replicas": 1,
+					"minReadySeconds": 0,
+					"progressDeadlineSeconds": 0,
+					"revisionHistoryLimit": 0,
+					"rollbackTo": 0,
+					"pod": [
+						{
+							"restartPolicy": "Always",
+							"containers": [
+								{
+									"args": [],
+									"command": [],
+									"imageRepository": "nirmata/payment",
+									"tag": "latest",
+									"ports": [
+										{
+											"containerPort": 80,
+											"type": "HTTP",
+											"hostPort": 0,
+											"name": "payment",
+											"enableServiceNetworking": true,
+											"isK8sServicePort": true,
+											"k8sServicePort": [
+												{
+													"nodePort": 0
+												}
+											],
+											"k8sNetworkPolicy": [
+												{
+													"fromService": "nirmata-gateway"
+												}
+											]
+										}
+									],
+									"containerType": [
+										{
+											"name": "No Limit"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"servicePorts": [
+				{
+					"nodePort": 0,
+					"containerPorts": [
+						{
+							"containerPort": 80
+						}
+					]
+				}
+			]
+		}
+	],
+	"k8sGateway": [
+		{
+			"name": "nirmata-gateway"
+		}
+	]
+}
