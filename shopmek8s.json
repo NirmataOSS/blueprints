@@ -94,12 +94,8 @@
 												}
 											]
 										}
-									],
-									"containerType": [
-										{
-											"name": "No Limit"
-										}
 									]
+
 								}
 							]
 						}
@@ -156,11 +152,6 @@
 												}
 											]
 										}
-									],
-									"containerType": [
-										{
-											"name": "No Limit"
-										}
 									]
 								}
 							]
@@ -212,11 +203,6 @@
 													"nodePort": 0
 												}
 											]
-										}
-									],
-									"containerType": [
-										{
-											"name": "No Limit"
 										}
 									]
 								}
@@ -274,11 +260,6 @@
 													"nodePort": 0
 												}
 											]
-										}
-									],
-									"containerType": [
-										{
-											"name": "No Limit"
 										}
 									]
 								}
@@ -342,11 +323,6 @@
 												}
 											]
 										}
-									],
-									"containerType": [
-										{
-											"name": "No Limit"
-										}
 									]
 								}
 							]
@@ -403,11 +379,6 @@
 													"fromService": "nirmata-gateway"
 												}
 											]
-										}
-									],
-									"containerType": [
-										{
-											"name": "No Limit"
 										}
 									]
 								}
