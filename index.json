@@ -23,7 +23,8 @@
     "name": "ShopmeK8s",
     "description": "Simple microservices Kubernetes application. Requires 6 containers.",
     "filename": "shopmek8s.json",
-    "application": "shopmek8s"
+    "application": "shopmek8s",
+    "icon": "https://raw.githubusercontent.com/NirmataOSS/blueprints/shopmek8s.png"
   },
   {
     "name": "Neflix OSS",
