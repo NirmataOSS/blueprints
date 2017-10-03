@@ -18,7 +18,7 @@
 				{
 					"type": "urlRoute",
 					"route": "/orders",
-					"toService": "catalog",
+					"toService": "orders",
 					"toPort": 80,
 					"toPortType": "HTTP",
 					"targetUrl": "/service",
@@ -27,7 +27,7 @@
 				{
 					"type": "urlRoute",
 					"route": "/payment",
-					"toService": "catalog",
+					"toService": "payment",
 					"toPort": 80,
 					"toPortType": "HTTP",
 					"targetUrl": "/service",
@@ -36,7 +36,7 @@
 				{
 					"type": "urlRoute",
 					"route": "/customer",
-					"toService": "catalog",
+					"toService": "customer",
 					"toPort": 80,
 					"toPortType": "HTTP",
 					"targetUrl": "/service",
@@ -50,43 +50,7 @@
 			"defaultAction": "deny",
 			"target": "shopmek8s",
 			"k8sRules": [
-				{
-					"fromService": "nirmata-gateway",
-					"fromVersion": "nirmata-gateway",
-					"action": "allow",
-					"port": [
-						{
-							"containerPort": 80
-						}
-					]
-				},
-				{
-					"fromService": "nirmata-gateway",
-					"action": "allow",
-					"port": [
-						{
-							"containerPort": 80
-						}
-					]
-				},
-				{
-					"fromService": "nirmata-gateway",
-					"action": "allow",
-					"port": [
-						{
-							"containerPort": 80
-						}
-					]
-				},
-				{
-					"fromService": "nirmata-gateway",
-					"action": "allow",
-					"port": [
-						{
-							"containerPort": 80
-						}
-					]
-				}
+
 			]
 		}
 	],
@@ -470,3 +434,4 @@
 		}
 	]
 }
+
