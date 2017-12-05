@@ -8,6 +8,7 @@
 			"imageRepository": "nirmata/mongodb-3.3.9",
 			"tag": "latest",
 			"cluster": true,
+			"type": "stateful",
 			"serviceSpec": [
 				{
 					"runCommand": "",
