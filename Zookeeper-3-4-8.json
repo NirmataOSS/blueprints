@@ -8,6 +8,7 @@
 			"imageRepository": "nirmata/zookeeper-3.4.8",
 			"tag": "latest",
 			"cluster": true,
+			"type": "stateful",
 			"serviceSpec": [
 				{
 					"runCommand": "",
