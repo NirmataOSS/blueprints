@@ -6,6 +6,7 @@
 			"name": "zookeeper",
 			"imageRepository": "nirmata/zookeeper-3.4.6",
 			"cluster": true,
+			"type": "stateful",
 			"serviceSpec": [
 				{
 					"runCommand": "",
