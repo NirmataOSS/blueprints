@@ -7,6 +7,7 @@
 			"imageRepository": "nirmata/mongodb-2.6",
 			"tag": "latest",
 			"cluster": true,
+			"type": "stateful",
 			"serviceSpec": [
 				{
 					"runCommand": "",
