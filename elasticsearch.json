@@ -8,7 +8,7 @@
 			"imageRepository": "nirmata/elasticsearch-demo",
 			"tag": "latest",
 			"cluster": true,
-			"serviceType": "stateful",
+			"type": "stateful",
 			"serviceSpec": [
 				{
 					"runCommand": "",
