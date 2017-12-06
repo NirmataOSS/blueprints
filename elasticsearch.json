@@ -68,10 +68,10 @@
 					"healthCheck": [
 						{
 							"type": "HTTP",
-							"startDelay": 10,
+							"startDelay": 15,
 							"checkInterval": 10,
 							"checkTimeout": 10,
-							"failureThreshold": 3,
+							"failureThreshold": 5,
 							"successThreshold": 1,
 							"path": "/",
 							"endpoint": [
